@@ -85,19 +85,40 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   useEffect(() => {
     async function load() {
       setLoading(true)
+      const path = window.location.pathname
+      const isMoviePath = path.startsWith('/movie')
+      const isTvPath = path.startsWith('/tv') || path.startsWith('/anime')
       try {
-        try {
+        if (isMoviePath) {
+          // Movie page - try movie first
+          try {
+            const movieData = await api.movieDetails(id)
+            if (movieData && movieData.title) {
+              setDetails(movieData)
+              setType('movie')
+              return
+            }
+          } catch {}
+          // fallback to TV if movie not found
+          const tvData = await api.tvDetails(id)
+          setDetails(tvData)
+          setType(tvData.genres?.some(g => g.name === 'Animation') || tvData.origin_country?.includes('JP') ? 'anime' : 'tv')
+        } else {
+          // TV/Anime page - try TV first (fixes Naruto bug)
+          try {
+            const tvData = await api.tvDetails(id)
+            if (tvData && (tvData.name || tvData.original_name)) {
+              setDetails(tvData)
+              const isAnimeCheck = tvData.genres?.some(g => g.name === 'Animation') || tvData.origin_country?.includes('JP')
+              setType(isAnimeCheck ? 'anime' : 'tv')
+              return
+            }
+          } catch {}
+          // fallback to movie if TV not found
           const movieData = await api.movieDetails(id)
-          if (movieData && movieData.title) {
-            setDetails(movieData)
-            setType('movie')
-            return
-          }
-        } catch {}
-        const tvData = await api.tvDetails(id)
-        setDetails(tvData)
-        const isAnimeCheck = tvData.genres?.some(g => g.name === 'Animation') || tvData.origin_country?.includes('JP')
-        setType(isAnimeCheck ? 'anime' : 'tv')
+          setDetails(movieData)
+          setType('movie')
+        }
       } catch (e) { console.error(e) } finally { setLoading(false) }
     }
     load()
