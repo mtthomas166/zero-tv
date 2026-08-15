@@ -80,13 +80,6 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [seasonNum, setSeasonNum] = useState(1)
   const [episodeNum, setEpisodeNum] = useState(1)
-function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
-  const { id } = useParams()
-  const [details, setDetails] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [seasonNum, setSeasonNum] = useState(1)
-  const [episodeNum, setEpisodeNum] = useState(1)
   const [type, setType] = useState('movie')
   const [seasonDetails, setSeasonDetails] = useState(null)
   const [episodesLoading, setEpisodesLoading] = useState(false)
@@ -127,48 +120,6 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     }
     load()
   }, [id])
-
-  // Fetch episodes when season changes
-  useEffect(() => {
-    if (!details || details.title) return // movie, skip
-    async function fetchSeason() {
-      setEpisodesLoading(true)
-      try {
-        const data = await api.seasonDetails(id, seasonNum)
-        setSeasonDetails(data)
-        // reset to first episode when season changes
-        if (data.episodes && data.episodes.length > 0) {
-          setEpisodeNum(data.episodes[0].episode_number)
-        }
-      } catch (e) {
-        console.error('season fetch error', e)
-        setSeasonDetails(null)
-      } finally {
-        setEpisodesLoading(false)
-      }
-    }
-    fetchSeason()
-  }, [id, seasonNum, details])
-  // Fetch episodes when season changes
-  useEffect(() => {
-    if (!details || details.title) return
-    async function fetchSeason() {
-      setEpisodesLoading(true)
-      try {
-        const data = await api.seasonDetails(id, seasonNum)
-        setSeasonDetails(data)
-        if (data.episodes && data.episodes.length > 0) {
-          setEpisodeNum(data.episodes[0].episode_number)
-        }
-      } catch (e) {
-        console.error('season fetch error', e)
-        setSeasonDetails(null)
-      } finally {
-        setEpisodesLoading(false)
-      }
-    }
-    fetchSeason()
-  }, [id, seasonNum, details])
 
   useEffect(() => {
     if (!details) return
@@ -228,6 +179,26 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     }
   }, [details])
 
+  useEffect(() => {
+    if (!details || details.title) return
+    async function fetchSeason() {
+      setEpisodesLoading(true)
+      try {
+        const data = await api.seasonDetails(id, seasonNum)
+        setSeasonDetails(data)
+        if (data.episodes && data.episodes.length > 0) {
+          setEpisodeNum(data.episodes[0].episode_number)
+        }
+      } catch (e) {
+        console.error('season fetch error', e)
+        setSeasonDetails(null)
+      } finally {
+        setEpisodesLoading(false)
+      }
+    }
+    fetchSeason()
+  }, [id, seasonNum, details])
+
   if (loading) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>Loading...</div>
   if (!details) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>Content not found</div>
 
@@ -250,7 +221,7 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   return (
     <div style={{ margin: '-20px -20px 0 -20px' }}>
       <div style={{ height: '420px', background: backdropUrl ? `linear-gradient(180deg, rgba(11,14,18,.2), rgba(11,14,18,.8), #0b0e12), url("${backdropUrl}")` : `linear-gradient(135deg, #151922, #090b0f)`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-        <Link to="/" style={{ position: 'absolute', top: '20px', left: '20px', padding: '8px 14px', borderRadius: '8px', background: 'rgba(0,0,0,.6)', color: '#fff', border: '1px solid rgba(255,255,255,.2)', textDecoration: 'none' }}>← Back</Link>
+        <Link to="/" style={{ position: 'absolute', top: '20px', left: '20px', padding: '8px 14px', borderRadius: '8px', background: 'rgba(0,0,0,.6)', color: '#fff', border: '1px solid rgba(255,255,255,.2)', textDecoration: 'none' }}>Back</Link>
       </div>
       <div style={{ padding: '0 28px 30px', marginTop: '-120px', position: 'relative', display: 'flex', gap: '26px', flexWrap: 'wrap' }}>
         <div style={{ flex: '0 0 220px' }}>
@@ -260,14 +231,14 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
           <h1 style={{ margin: '0 0 6px', fontSize: '32px', color: '#fff' }}>{title} {year && <span style={{ color: '#8d99a6', fontWeight: 400 }}>({year})</span>}</h1>
           {originalTitle && originalTitle !== title && <p style={{ margin: '0 0 10px', color: '#8d99a6' }}>{originalTitle}</p>}
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '10px 0 16px' }}>
-            {rating && <span style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#f7c948' }}>⭐ {rating}</span>}
+            {rating && <span style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#f7c948' }}>{rating}</span>}
             {year && <span style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#cbd5df' }}>{year}</span>}
             {genres.map(g => <span key={g.id} style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#cbd5df' }}>{g.name}</span>)}
           </div>
           <p style={{ color: '#cbd5df', lineHeight: 1.7, maxWidth: '800px' }}>{overview}</p>
           <div style={{ display: 'flex', gap: '12px', marginTop: '18px' }}>
-            <button onClick={() => setIsPlaying(v => !v)} style={{ padding: '10px 18px', borderRadius: '10px', border: 'none', background: '#e50914', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>{isPlaying ? 'Stop' : '▶ Watch'}</button>
-            <button onClick={() => onWatchlistChange(details, watchlistType)} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #2a323f', background: saved ? '#1e242e' : 'transparent', color: '#fff', cursor: 'pointer' }}>{saved ? '♥ In Watchlist' : '♡ Add to Watchlist'}</button>
+            <button onClick={() => setIsPlaying(v => !v)} style={{ padding: '10px 18px', borderRadius: '10px', border: 'none', background: '#e50914', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>{isPlaying ? 'Stop' : 'Watch'}</button>
+            <button onClick={() => onWatchlistChange(details, watchlistType)} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #2a323f', background: saved ? '#1e242e' : 'transparent', color: '#fff', cursor: 'pointer' }}>{saved ? 'In Watchlist' : 'Add to Watchlist'}</button>
           </div>
           {cast.length > 0 && <div style={{ marginTop: '24px' }}><h3 style={{ color: '#fff', marginBottom: '10px' }}>Cast</h3><div style={{ display: 'flex', gap: '10px', overflowX: 'auto' }}>{cast.map(c => <div key={c.id} style={{ minWidth: '90px', textAlign: 'center' }}><img src={posterUrl(c.profile_path) || ''} alt={c.name} style={{ width: '70px', height: '70px', borderRadius: '50%', objectFit: 'cover', background: '#222' }} /><div style={{ color: '#cbd5df', fontSize: '12px', marginTop: '4px' }}>{c.name}</div></div>)}</div></div>}
         </div>
@@ -280,8 +251,6 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
               {seasons.map(s => <button key={s.id} onClick={() => { setSeasonNum(s.season_number); setIsPlaying(false); }} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #2a323f', background: seasonNum === s.season_number ? '#e50914' : '#1e242e', color: '#fff', cursor: 'pointer', fontWeight: seasonNum === s.season_number ? 700 : 400 }}>Season {s.season_number}</button>)}
             </div>
           )}
-          
-          {/* Episodes List */}
           <div style={{ marginTop: '10px' }}>
             <h3 style={{ color: '#fff', marginBottom: '12px' }}>Episodes {seasonDetails ? `(${seasonDetails.episodes?.length || 0})` : ''}</h3>
             {episodesLoading ? (
@@ -312,7 +281,7 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
                       <div style={{ fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>E{ep.episode_number}: {ep.name || `Episode ${ep.episode_number}`}</div>
                       <div style={{ fontSize: '11px', color: '#8d99a6', marginTop: '2px' }}>{ep.air_date || ''} {ep.runtime ? `• ${ep.runtime}m` : ''}</div>
                     </div>
-                    {episodeNum === ep.episode_number && isPlaying && <span style={{ color: '#e50914', fontSize: '12px' }}>● Playing</span>}
+                    {episodeNum === ep.episode_number && isPlaying && <span style={{ color: '#e50914', fontSize: '12px' }}>Playing</span>}
                   </button>
                 ))}
               </div>
@@ -368,7 +337,7 @@ function WatchlistPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   }
   return (
     <div>
-      <h2 style={{ color: '#fff' }}>Watchlist ♥ ({watchlist.length})</h2>
+      <h2 style={{ color: '#fff' }}>Watchlist ({watchlist.length})</h2>
       {watchlist.length === 0 ? <p style={{ color: '#8d99a6' }}>Your watchlist is empty</p> : <MediaGrid items={watchlist} onSelect={handleSelect} watchlist={watchlist} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />}
     </div>
   )
