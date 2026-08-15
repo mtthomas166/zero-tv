@@ -397,7 +397,7 @@ export default function App() {
 
       <footer className={styles.footer}><p className={styles.footerText}>&copy; {new Date().getFullYear()} All rights reserved <a href="https://www.codespecters.com/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Code Specter</a> | Digital Entertainment Democratized</p></footer>
     </div>
-  )
+  ) 
 }
 
 // Wrapper for main.jsx
