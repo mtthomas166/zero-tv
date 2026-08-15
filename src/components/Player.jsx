@@ -1,93 +1,163 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import styles from './Player.module.css';
 
-// فقط السيرفرات النضيفة اللي مفهاش اعلانات Melbet - شلت VidSrc.to خالص
-const CLEAN_SERVERS = [
+// كل السيرفرات المجانية اللي مش محتاجة API Key - زي VidSrc.to
+const SERVERS = [
   {
-    id: 'multiembed',
-    name: '✨ Server 1 - No Ads (الأنضف)',
-    url: (id, type, s, e) => type === 'movie' 
+    id: 'vidsrc_to',
+    name: 'Server 1 - Fast ⚡',
+    label: 'بدون اعلانات كتير',
+    getUrl: (id, type, s, e) => type === 'movie' 
+      ? `https://vidsrc.to/embed/movie/${id}`
+      : `https://vidsrc.to/embed/tv/${id}/${s}/${e}`
+  },
+  {
+    id: 'vidsrc_me',
+    name: 'Server 2 - HD',
+    label: 'جودة عالية',
+    getUrl: (id, type, s, e) => type === 'movie'
+      ? `https://vidsrc.me/embed/movie?tmdb=${id}`
+      : `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`
+  },
+  {
+    id: 'superembed',
+    name: 'Server 3 - No Ads',
+    label: 'أنضف واحد',
+    getUrl: (id, type, s, e) => type === 'movie'
       ? `https://multiembed.mov/?video_id=${id}&tmdb=1`
       : `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}`
   },
   {
-    id: 'smashy',
-    name: '✨ Server 2 - Smashy (بدون اعلانات)',
-    url: (id, type, s, e) => type === 'movie'
-      ? `https://player.smashy.stream/movie/${id}`
-      : `https://player.smashy.stream/tv/${id}?s=${s}&e=${e}`
+    id: 'vidapi',
+    name: 'Server 4 - Backup',
+    label: 'احتياطي',
+    getUrl: (id, type, s, e) => type === 'movie'
+      ? `https://vidapi.xyz/embed/movie/${id}`
+      : `https://vidapi.xyz/embed/tv/${id}&s=${s}&e=${e}`
+  },
+  {
+    id: '2embed',
+    name: 'Server 5 - 2Embed',
+    label: 'قديم وثابت',
+    getUrl: (id, type, s, e) => type === 'movie'
+      ? `https://www.2embed.cc/embed/${id}`
+      : `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`
+  },
+  {
+    id: 'vidsrc_su',
+    name: 'Server 6 - SU',
+    label: 'سريع',
+    getUrl: (id, type, s, e) => type === 'movie'
+      ? `https://vidsrc.su/embed/movie/${id}`
+      : `https://vidsrc.su/embed/tv/${id}/${s}/${e}`
   },
   {
     id: 'autoembed',
-    name: 'Server 3 - AutoEmbed',
-    url: (id, type, s, e) => type === 'movie'
+    name: 'Server 7 - Auto',
+    label: 'اوتوماتيك',
+    getUrl: (id, type, s, e) => type === 'movie'
       ? `https://autoembed.co/movie/tmdb/${id}`
       : `https://autoembed.co/tv/tmdb/${id}-${s}-${e}`
-  }
+  },
+  {
+    id: 'smashy',
+    name: 'Server 8 - Smashy',
+    label: 'جديد',
+    getUrl: (id, type, s, e) => type === 'movie'
+      ? `https://player.smashy.stream/movie/${id}`
+      : `https://player.smashy.stream/tv/${id}?s=${s}&e=${e}`
+  },
 ];
 
-export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1 }) {
-  const [server, setServer] = useState(CLEAN_SERVERS[0].id);
-  const [loading, setLoading] = useState(true);
+export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1, title }) {
+  const [activeServer, setActiveServer] = useState(SERVERS[0].id);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // امنع اي اعلان يفتح صفحة جديدة
+  // ✅ سكريبت ExoClick - بيشغل البانر تحت المشغل
   useEffect(() => {
-    const originalOpen = window.open;
-    window.open = () => null;
-    return () => { window.open = originalOpen; };
-  }, [server]);
+    // نتأكد ان السكريبت متحملش قبل كده
+    if (document.querySelector('script[src="https://a.magsrv.com/ad-provider.js"]')) {
+      if (window.AdProvider) {
+        window.AdProvider.push({ "serve": {} });
+      }
+      return;
+    }
 
-  const current = CLEAN_SERVERS.find(x => x.id === server);
-  const src = current ? current.url(tmdbId, type, season, episode) : '';
+    const script = document.createElement('script');
+    script.src = 'https://a.magsrv.com/ad-provider.js';
+    script.async = true;
+    script.type = 'application/javascript';
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      (window.AdProvider = window.AdProvider || []).push({ "serve": {} });
+    };
+  }, [activeServer]); // هيعيد تحميل الاعلان مع كل سيرفر عشان يعد Views
+
+  const activeServerData = useMemo(() => 
+    SERVERS.find(s => s.id === activeServer) || SERVERS[0], 
+    [activeServer]
+  );
+
+  const embedUrl = useMemo(() => {
+    if (!tmdbId) return '';
+    return activeServerData.getUrl(tmdbId, type, season, episode);
+  }, [tmdbId, type, season, episode, activeServerData]);
 
   return (
-    <div style={{width:'100%', background:'#0f0f0f', borderRadius:'12px', overflow:'hidden'}}>
-      <div style={{background:'#1a1a1a', padding:'12px', display:'flex', gap:'8px', flexWrap:'wrap', alignItems:'center'}}>
-        <span style={{color:'#fff', fontSize:'13px'}}>جرب سيرفر تاني لو فيه اعلانات:</span>
-        {CLEAN_SERVERS.map(s => (
-          <button
-            key={s.id}
-            onClick={() => { setServer(s.id); setLoading(true); }}
-            style={{
-              background: server === s.id ? '#e50914' : '#2a2a2a',
-              color: server === s.id ? '#fff' : '#ccc',
-              border:'1px solid #444',
-              padding:'6px 12px',
-              borderRadius:'20px',
-              fontSize:'11px',
-              cursor:'pointer'
-            }}
-          >
-            {s.name}
-          </button>
-        ))}
+    <div className={styles.playerWrapper}>
+      {/* شريط اختيار السيرفر */}
+      <div className={styles.serverBar}>
+        <div className={styles.serverLabel}>
+          <span>🎬 اختار السيرفر لو واحد علق:</span>
+          {title && <span className={styles.movieTitle}> - {title}</span>}
+        </div>
+        <div className={styles.serverList}>
+          {SERVERS.map((server) => (
+            <button
+              key={server.id}
+              className={`${styles.serverBtn} ${activeServer === server.id ? styles.active : ''}`}
+              onClick={() => {
+                setActiveServer(server.id);
+                setIsLoading(true);
+              }}
+              title={server.label}
+            >
+              {server.name}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div style={{position:'relative', width:'100%', paddingTop:'56.25%', background:'#000'}}>
-        {loading && (
-          <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', color:'#fff', textAlign:'center', zIndex:2}}>
-            <div style={{width:'30px', height:'30px', border:'3px solid #333', borderTop:'3px solid #e50914', borderRadius:'50%', animation:'spin 1s linear infinite', margin:'0 auto 10px'}}></div>
-            <p style={{fontSize:'12px'}}>جاري التحميل بدون اعلانات...</p>
+      {/* المشغل */}
+      <div className={styles.videoContainer}>
+        {isLoading && (
+          <div className={styles.loader}>
+            <div className={styles.spinner}></div>
+            <p>جاري تحميل {activeServerData.name}...</p>
           </div>
         )}
+        
         <iframe
-          key={`${server}-${tmdbId}-${season}-${episode}`}
-          src={src}
-          style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:'none'}}
+          key={`${activeServer}-${tmdbId}-${season}-${episode}`}
+          src={embedUrl}
+          className={styles.iframe}
           allowFullScreen
-          // ده السحر - بيمنع الـ Popups بتاعة Melbet و Jean_sexy
-          sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-presentation"
-          referrerPolicy="no-referrer"
-          allow="autoplay; encrypted-media; fullscreen"
-          onLoad={() => setLoading(false)}
-        />
+          frameBorder="0"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          onLoad={() => setIsLoading(false)}
+        ></iframe>
       </div>
-      <style>{`@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}</style>
+
+      {/* ✅ مكان اعلانك - ExoClick */}
+      <div className={styles.adSlot} style={{ minHeight: '280px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#111', padding: '15px', marginTop: '15px', borderRadius: '8px' }}>
+        <p style={{fontSize:'11px', color:'#666', marginBottom:'8px', letterSpacing:'1px'}}>ADVERTISEMENT</p>
+        <ins className="eas6a9788e2" data-zoneid="6003080"></ins>
+        
+        <p style={{fontSize:'12px', color:'#888', textAlign:'center', marginTop:'15px'}}>
+          لو الفيديو مش شغال دوس على سيرفر تاني فوق 👆
+        </p>
+      </div>
     </div>
   );
 }
-
-{/* إعلان ExoClick تحت المشغل */}
-<div style={{ margin: '15px auto', textAlign: 'center', maxWidth: '300px' }}>
-  <ins className="eas6a9788e2" data-zoneid="6003080"></ins>
-</div>
