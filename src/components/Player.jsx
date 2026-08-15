@@ -86,3 +86,8 @@ export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1
     </div>
   );
 }
+
+{/* إعلان ExoClick تحت المشغل */}
+<div style={{ margin: '15px auto', textAlign: 'center', maxWidth: '300px' }}>
+  <ins className="eas6a9788e2" data-zoneid="6003080"></ins>
+</div>
