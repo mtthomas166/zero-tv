@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams, useSearchParams, NavLink } from 'react-router-dom'
 
 import Home from './pages/Home.jsx'
@@ -19,41 +19,65 @@ import {
 
 import styles from './App.module.css'
 
-// =========================================================
-// UTILS - SEO SLUG
-// =========================================================
 function slugify(text) {
   if (!text) return ''
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\u0600-\u06FF]+/g, '-') // عربي + انجليزي
-    .replace(/^-+|-+$/g, '')
+  return text.toString().toLowerCase().trim().replace(/[^a-z0-9\u0600-\u06FF]+/g, '-').replace(/^-+|-+$/g, '').substring(0,60)
 }
 
 const WATCHLIST_KEY = 'cs_watchlist'
-
 function loadWatchlist() {
   try {
     const value = localStorage.getItem(WATCHLIST_KEY)
     if (!value) return []
     const parsed = JSON.parse(value)
     return Array.isArray(parsed) ? parsed : []
-  } catch {
-    return []
-  }
+  } catch { return [] }
 }
-
 function saveWatchlist(items) {
-  try {
-    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(items))
-  } catch {}
+  try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify(items)) } catch {}
 }
 
-// =========================================================
-// DETAILS PAGE - ده اللي بيخلي كل فيلم ليه رابط وعنوان
-// =========================================================
+// ========== SEO HELPER ==========
+function setMeta(name, content, isProperty = false) {
+  if (!content) return
+  const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`
+  let el = document.querySelector(selector)
+  if (!el) {
+    el = document.createElement('meta')
+    if (isProperty) el.setAttribute('property', name)
+    else el.setAttribute('name', name)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
+
+function setCanonical(url) {
+  let el = document.querySelector('link[rel="canonical"]')
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', 'canonical')
+    document.head.appendChild(el)
+  }
+  el.setAttribute('href', url)
+}
+
+function setJsonLd(data) {
+  let el = document.getElementById('json-ld-details')
+  if (!el) {
+    el = document.createElement('script')
+    el.id = 'json-ld-details'
+    el.type = 'application/ld+json'
+    document.head.appendChild(el)
+  }
+  el.textContent = JSON.stringify(data)
+}
+
+function clearJsonLd() {
+  const el = document.getElementById('json-ld-details')
+  if (el) el.remove()
+}
+
+// ========== DETAILS PAGE WITH FULL SEO ==========
 function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const { id } = useParams()
   const [details, setDetails] = useState(null)
@@ -61,42 +85,82 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [seasonNum, setSeasonNum] = useState(1)
   const [episodeNum, setEpisodeNum] = useState(1)
-  const [type, setType] = useState('movie') // movie / tv
+  const [type, setType] = useState('movie')
 
   useEffect(() => {
     async function load() {
       setLoading(true)
       try {
-        // جرب فيلم الأول، لو فشل جرب مسلسل
         try {
           const movieData = await api.movieDetails(id)
           if (movieData && movieData.title) {
             setDetails(movieData)
             setType('movie')
-            // ✅ ده اللي بيخلي العنوان يتغير في التاب
-            document.title = `مشاهدة ${movieData.title} مترجم - Zero TV`
             return
           }
         } catch {}
-        
         const tvData = await api.tvDetails(id)
         setDetails(tvData)
         const isAnimeCheck = tvData.genres?.some(g => g.name === 'Animation') || tvData.origin_country?.includes('JP')
         setType(isAnimeCheck ? 'anime' : 'tv')
-        document.title = `مشاهدة ${tvData.name} مترجم - Zero TV`
-      } catch (e) {
-        console.error(e)
-      } finally {
-        setLoading(false)
-      }
+      } catch (e) { console.error(e) } finally { setLoading(false) }
     }
     load()
-    
-    // لما تخرج من الصفحة رجع العنوان الأصلي
+  }, [id])
+
+  // SEO Effect
+  useEffect(() => {
+    if (!details) return
+    const isMovie = type === 'movie' || !!details.title
+    const title = isMovie ? details.title : details.name
+    const year = getYear(isMovie ? details.release_date : details.first_air_date)
+    const rating = formatRating(details.vote_average)
+    const overview = details.overview || `مشاهدة ${title} مترجم بجودة عالية على Zero TV`
+    const shortDesc = overview.slice(0, 155)
+    const poster = posterUrl(details.poster_path, true)
+    const backdrop = details.backdrop_path ? `https://image.tmdb.org/t/p/w1280${details.backdrop_path}` : poster
+    const slug = slugify(title)
+    const canonicalUrl = `https://zero-tv.pages.dev/${type}/${id}${slug ? '-' + slug : ''}`
+    const fullTitle = `${title} ${year ? `(${year})` : ''} - مشاهدة مترجم - Zero TV`.trim()
+
+    document.title = fullTitle
+    setMeta('description', shortDesc)
+    setMeta('og:title', fullTitle, true)
+    setMeta('og:description', shortDesc, true)
+    setMeta('og:image', poster || backdrop, true)
+    setMeta('og:url', canonicalUrl, true)
+    setMeta('og:type', isMovie ? 'video.movie' : 'video.tv_show', true)
+    setMeta('og:site_name', 'Zero TV', true)
+    setMeta('twitter:card', 'summary_large_image')
+    setMeta('twitter:title', fullTitle)
+    setMeta('twitter:description', shortDesc)
+    setMeta('twitter:image', poster || backdrop)
+    setCanonical(canonicalUrl)
+
+    // JSON-LD for Google
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": isMovie ? "Movie" : "TVSeries",
+      "name": title,
+      "description": overview,
+      "image": poster,
+      "dateCreated": isMovie ? details.release_date : details.first_air_date,
+      "aggregateRating": details.vote_average ? {
+        "@type": "AggregateRating",
+        "ratingValue": details.vote_average,
+        "ratingCount": details.vote_count,
+        "bestRating": "10"
+      } : undefined,
+      "genre": details.genres?.map(g=>g.name),
+      "url": canonicalUrl
+    }
+    setJsonLd(jsonLd)
+
     return () => {
       document.title = 'Zero TV - مشاهدة أفلام ومسلسلات مجانا'
+      clearJsonLd()
     }
-  }, [id])
+  }, [details, type, id])
 
   useEffect(() => {
     if (details && details.seasons) {
@@ -105,13 +169,8 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     }
   }, [details])
 
-  if (loading) {
-    return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>جاري التحميل...</div>
-  }
-
-  if (!details) {
-    return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>المحتوى غير موجود</div>
-  }
+  if (loading) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>جاري التحميل...</div>
+  if (!details) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>المحتوى غير موجود</div>
 
   const isMovie = type === 'movie' || !!details.title
   const title = isMovie ? details.title : details.name
@@ -123,139 +182,80 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const poster = posterUrl(details.poster_path, true)
   const backdrop = details.backdrop_path
   const backdropUrl = backdrop ? `https://image.tmdb.org/t/p/w1280${backdrop}` : null
-
   const genres = Array.isArray(details.genres) ? details.genres : []
   const cast = Array.isArray(details?.credits?.cast) ? details.credits.cast.slice(0, 12) : []
   const videos = Array.isArray(details?.videos?.results) ? details.videos.results : []
   const trailer = videos.find(v => v.site === 'YouTube' && v.type === 'Trailer' && v.key) || videos.find(v => v.site === 'YouTube' && v.key)
   const seasons = !isMovie && Array.isArray(details.seasons) ? details.seasons.filter(s => s.season_number >= 0) : []
-
   const watchlistType = type === 'anime' ? 'anime' : isMovie ? 'movie' : 'tv'
   const saved = isInWatchlist({ id: details.id }, watchlistType)
-
   const embedUrl = isMovie ? movieEmbedUrl(id) : tvEmbedUrl(id, seasonNum, episodeNum)
 
   return (
     <div style={{ margin: '-20px -20px 0 -20px' }}>
-      {/* Hero Backdrop */}
-      <div style={{ 
-        height: '420px', 
-        background: backdropUrl ? `linear-gradient(180deg, rgba(11,14,18,.2), rgba(11,14,18,.8), #0b0e12), url("${backdropUrl}")` : `linear-gradient(135deg, #151922, #090b0f)`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center',
-        position: 'relative'
-      }}>
+      <div style={{ height: '420px', background: backdropUrl ? `linear-gradient(180deg, rgba(11,14,18,.2), rgba(11,14,18,.8), #0b0e12), url("${backdropUrl}")` : `linear-gradient(135deg, #151922, #090b0f)`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
         <Link to="/" style={{ position: 'absolute', top: '20px', left: '20px', padding: '8px 14px', borderRadius: '8px', background: 'rgba(0,0,0,.6)', color: '#fff', border: '1px solid rgba(255,255,255,.2)', textDecoration: 'none' }}>← رجوع</Link>
       </div>
-
       <div style={{ padding: '0 28px 30px', marginTop: '-120px', position: 'relative', display: 'flex', gap: '26px', flexWrap: 'wrap' }}>
         <div style={{ flex: '0 0 220px' }}>
           {poster ? <img src={poster} alt={title} style={{ width: '100%', borderRadius: '12px', boxShadow: '0 15px 40px rgba(0,0,0,.6)' }} /> : <div style={{ width: '100%', aspectRatio: '2/3', background: '#171b21' }} />}
         </div>
-
         <div style={{ flex: '1', minWidth: '300px', paddingTop: '60px' }}>
           <h1 style={{ margin: '0 0 6px', fontSize: '32px', color: '#fff' }}>{title} {year && <span style={{ color: '#8d99a6', fontWeight: 400 }}>({year})</span>}</h1>
           {originalTitle && originalTitle !== title && <p style={{ margin: '0 0 10px', color: '#8d99a6' }}>{originalTitle}</p>}
-          
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '12px 0', alignItems: 'center' }}>
-            <span style={{ padding: '5px 10px', borderRadius: '6px', background: '#e50914', color: '#fff', fontSize: '13px', fontWeight: 700 }}>{rating} ★</span>
-            <span style={{ color: '#8d99a6', fontSize: '13px' }}>{date}</span>
-            {genres.map(g => <span key={g.id} style={{ padding: '4px 8px', borderRadius: '999px', background: 'rgba(255,255,255,.08)', fontSize: '11px', color: '#c5ccd3' }}>{g.name}</span>)}
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '10px 0 16px' }}>
+            {rating && <span style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#f7c948' }}>⭐ {rating}</span>}
+            {year && <span style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#cbd5df' }}>{year}</span>}
+            {genres.map(g => <span key={g.id} style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#cbd5df' }}>{g.name}</span>)}
           </div>
-
-          <p style={{ color: '#c5ccd3', lineHeight: '1.7', fontSize: '14px', maxWidth: '700px' }}>{overview}</p>
-
-          <div style={{ display: 'flex', gap: '10px', marginTop: '22px', flexWrap: 'wrap' }}>
-            <button onClick={() => setIsPlaying(true)} style={{ minHeight: '46px', padding: '0 22px', border: 'none', borderRadius: '10px', background: '#e50914', color: '#fff', cursor: 'pointer', fontWeight: 800, fontSize: '14px' }}>▶ مشاهدة الآن</button>
-            <button onClick={() => onWatchlistChange({ ...details, type: watchlistType, title: title, name: title, poster_path: details.poster_path }, watchlistType)} style={{ minHeight: '46px', padding: '0 18px', border: '1px solid rgba(255,255,255,.12)', borderRadius: '10px', background: saved ? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>{saved ? '♥ في المفضلة' : '♡ اضافة للمفضلة'}</button>
+          <p style={{ color: '#cbd5df', lineHeight: 1.7, maxWidth: '800px' }}>{overview}</p>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '18px' }}>
+            <button onClick={() => setIsPlaying(v => !v)} style={{ padding: '10px 18px', borderRadius: '10px', border: 'none', background: '#e50914', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>{isPlaying ? 'إيقاف' : '▶ مشاهدة'}</button>
+            <button onClick={() => onWatchlistChange(details, watchlistType)} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #2a323f', background: saved ? '#1e242e' : 'transparent', color: '#fff', cursor: 'pointer' }}>{saved ? '♥ في المفضلة' : '♡ إضافة للمفضلة'}</button>
           </div>
-
-          {!isMovie && seasons.length > 0 && (
-            <div style={{ marginTop: '18px', display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-              <select value={seasonNum} onChange={e => setSeasonNum(Number(e.target.value))} style={{ padding: '8px 12px', borderRadius: '8px', background: '#1a1f28', color: '#fff', border: '1px solid rgba(255,255,255,.12)' }}>
-                {seasons.map(s => <option key={s.id} value={s.season_number}>الموسم {s.season_number}</option>)}
-              </select>
-              <select value={episodeNum} onChange={e => setEpisodeNum(Number(e.target.value))} style={{ padding: '8px 12px', borderRadius: '8px', background: '#1a1f28', color: '#fff', border: '1px solid rgba(255,255,255,.12)' }}>
-                {Array.from({ length: 50 }, (_, i) => i + 1).map(ep => <option key={ep} value={ep}>الحلقة {ep}</option>)}
-              </select>
-            </div>
-          )}
+          {cast.length > 0 && <div style={{ marginTop: '24px' }}><h3 style={{ color: '#fff', marginBottom: '10px' }}>طاقم التمثيل</h3><div style={{ display: 'flex', gap: '10px', overflowX: 'auto' }}>{cast.map(c => <div key={c.id} style={{ minWidth: '90px', textAlign: 'center' }}><img src={posterUrl(c.profile_path) || ''} alt={c.name} style={{ width: '70px', height: '70px', borderRadius: '50%', objectFit: 'cover', background: '#222' }} /><div style={{ color: '#cbd5df', fontSize: '12px', marginTop: '4px' }}>{c.name}</div></div>)}</div></div>}
         </div>
       </div>
-
-      {/* Player */}
-      {isPlaying && (
-        <div style={{ padding: '0 20px 30px' }}>
-          <Player tmdbId={id} type={isMovie ? 'movie' : 'tv'} season={seasonNum} episode={episodeNum} title={title} />
-        </div>
-      )}
-
-      {cast.length > 0 && (
-        <section style={{ padding: '0 28px 28px' }}>
-          <h3 style={{ color: '#fff', fontSize: '18px' }}>طاقم العمل</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(95px, 1fr))', gap: '12px', marginTop: '12px' }}>
-            {cast.map(p => {
-              const img = posterUrl(p.profile_path)
-              return (
-                <div key={p.credit_id || p.id} style={{ overflow: 'hidden', borderRadius: '8px', background: 'rgba(255,255,255,.04)' }}>
-                  {img ? <img src={img} alt={p.name} loading="lazy" style={{ width: '100%', aspectRatio: '2/3', objectFit: 'cover' }} /> : <div style={{ width: '100%', aspectRatio: '2/3', background: '#171b21' }} />}
-                  <div style={{ padding: '7px 8px' }}><div style={{ color: '#fff', fontSize: '12px' }}>{p.name}</div><div style={{ color: '#7d8894', fontSize: '11px' }}>{p.character}</div></div>
-                </div>
-              )
-            })}
+      {isPlaying && <div style={{ padding: '20px 28px' }}><Player tmdbId={id} type={isMovie ? 'movie' : 'tv'} season={seasonNum} episode={episodeNum} title={title} /></div>}
+      {!isMovie && seasons.length > 0 && (
+        <div style={{ padding: '0 28px 20px' }}>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+            {seasons.map(s => <button key={s.id} onClick={() => setSeasonNum(s.season_number)} style={{ padding: '6px 12px', borderRadius: '8px', border: '1px solid #2a323f', background: seasonNum === s.season_number ? '#e50914' : '#1e242e', color: '#fff', cursor: 'pointer' }}>S{s.season_number}</button>)}
           </div>
-        </section>
+        </div>
       )}
     </div>
   )
 }
 
 function SearchPage({ watchlist, onWatchlistChange, isInWatchlist }) {
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('q') || ''
+  const [params] = useSearchParams()
+  const q = params.get('q') || ''
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-
   useEffect(() => {
-    if (!query) return
-    document.title = `بحث: ${query} - Zero TV`
-    async function search() {
+    document.title = q ? `بحث: ${q} - Zero TV` : 'بحث - Zero TV'
+    async function run() {
+      if (!q) return
       setLoading(true)
       try {
-        const [moviesRes, tvRes, animeRes] = await Promise.all([
-          api.searchMovies(query),
-          api.searchTV(query),
-          api.searchAnime(query),
-        ])
-        const movies = (moviesRes?.results || []).map(i => ({ ...i, type: 'movie' }))
-        const tv = (tvRes?.results || []).map(i => ({ ...i, type: 'tv', isAnime: false }))
-        const anime = (animeRes?.results || []).map(i => ({ ...i, type: 'tv', isAnime: true }))
-        const map = new Map()
-        ;[...movies, ...tv, ...anime].forEach(item => {
-          const key = `${item.type}-${item.id}`
-          if (!map.has(key)) map.set(key, item)
-        })
-        setResults(Array.from(map.values()))
-      } catch (e) {
-        console.error(e)
-      } finally {
-        setLoading(false)
-      }
+        const [movies, tv] = await Promise.all([api.searchMovies(q), api.searchTV(q)])
+        const combined = [...(movies.results || []), ...(tv.results || [])].map(r => ({ ...r, type: r.title ? 'movie' : 'tv', isAnime: r.genre_ids?.includes(16) }))
+        setResults(combined)
+      } catch {} finally { setLoading(false) }
     }
-    search()
-  }, [query])
-
+    run()
+  }, [q])
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
     const type = item.type === 'movie' ? 'movie' : item.isAnime ? 'anime' : 'tv'
     navigate(`/${type}/${item.id}/${slug}`)
   }
-
   return (
-    <div style={{ paddingTop: '10px' }}>
-      <h1 style={{ color: '#fff' }}>نتائج البحث عن "{query}"</h1>
-      <MediaGrid items={results} type="movie" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
+    <div>
+      <h2 style={{ color: '#fff' }}>نتائج البحث عن: {q}</h2>
+      {loading ? <div style={{ color: '#fff' }}>جاري البحث...</div> : <MediaGrid items={results} onSelect={handleSelect} watchlist={watchlist} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />}
     </div>
   )
 }
@@ -263,25 +263,26 @@ function SearchPage({ watchlist, onWatchlistChange, isInWatchlist }) {
 function WatchlistPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
   useEffect(() => { document.title = 'المفضلة - Zero TV' }, [])
-  
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
-    const type = item.type || 'movie'
+    const type = item.type === 'movie' ? 'movie' : item.type === 'tv' ? 'tv' : 'anime'
     navigate(`/${type}/${item.id}/${slug}`)
   }
-
   return (
-    <div style={{ paddingTop: '10px' }}>
-      <h1 style={{ color: '#fff' }}>♥ المفضلة ({watchlist.length})</h1>
-      {watchlist.length === 0 ? <p style={{ color: '#7d8894' }}>المفضلة فاضية</p> : <MediaGrid items={watchlist} type="movie" loading={false} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />}
+    <div>
+      <h2 style={{ color: '#fff' }}>قائمة المشاهدة ♥ ({watchlist.length})</h2>
+      {watchlist.length === 0 ? <p style={{ color: '#8d99a6' }}>لا يوجد شيء في المفضلة</p> : <MediaGrid items={watchlist} onSelect={handleSelect} watchlist={watchlist} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />}
     </div>
   )
 }
 
-// Wrapper for Home etc to make navigation work
 function HomeWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
-  useEffect(() => { document.title = 'Zero TV - مشاهدة أفلام ومسلسلات وانمي مجانا' }, [])
+  useEffect(() => {
+    document.title = 'Zero TV - مشاهدة أفلام ومسلسلات وأنمي مجانا'
+    setMeta('description', 'شاهد أحدث الأفلام والمسلسلات والأنمي مترجم بجودة عالية على Zero TV مجانا بدون إعلانات')
+    setCanonical('https://zero-tv.pages.dev/')
+  }, [])
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
     const type = item.type === 'movie' ? 'movie' : item.isAnime ? 'anime' : 'tv'
@@ -292,7 +293,11 @@ function HomeWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
 
 function MoviesWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
-  useEffect(() => { document.title = 'أفلام - Zero TV' }, [])
+  useEffect(() => {
+    document.title = 'أفلام مترجمة - Zero TV'
+    setMeta('description', 'شاهد أحدث الأفلام الأجنبية والعربية مترجمة بجودة عالية')
+    setCanonical('https://zero-tv.pages.dev/movies')
+  }, [])
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
     navigate(`/movie/${item.id}/${slug}`)
@@ -302,7 +307,11 @@ function MoviesWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
 
 function TVWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
-  useEffect(() => { document.title = 'مسلسلات - Zero TV' }, [])
+  useEffect(() => {
+    document.title = 'مسلسلات مترجمة - Zero TV'
+    setMeta('description', 'شاهد أحدث المسلسلات الأجنبية مترجمة بجودة عالية')
+    setCanonical('https://zero-tv.pages.dev/tv')
+  }, [])
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
     navigate(`/tv/${item.id}/${slug}`)
@@ -312,7 +321,11 @@ function TVWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
 
 function AnimeWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
-  useEffect(() => { document.title = 'أنمي - Zero TV' }, [])
+  useEffect(() => {
+    document.title = 'أنمي مترجم - Zero TV'
+    setMeta('description', 'شاهد أحدث حلقات الأنمي المترجم بجودة عالية')
+    setCanonical('https://zero-tv.pages.dev/anime')
+  }, [])
   function handleSelect(item) {
     const slug = slugify(item.title || item.name)
     navigate(`/anime/${item.id}/${slug}`)
@@ -329,22 +342,17 @@ export default function App() {
     if (!item) return false
     return watchlist.some(saved => String(saved.id) === String(item.id) && saved.type === type)
   }
-
   function toggleWatchlist(item, type) {
     if (!item) return
     setWatchlist(current => {
       const exists = current.some(saved => String(saved.id) === String(item.id) && saved.type === type)
       let updated
-      if (exists) {
-        updated = current.filter(saved => !(String(saved.id) === String(item.id) && saved.type === type))
-      } else {
-        updated = [...current, { ...item, type }]
-      }
+      if (exists) updated = current.filter(saved => !(String(saved.id) === String(item.id) && saved.type === type))
+      else updated = [...current, { ...item, type }]
       saveWatchlist(updated)
       return updated
     })
   }
-
   function handleSearch(e) {
     if (e.key !== 'Enter') return
     const value = e.target.value.trim()
@@ -367,17 +375,10 @@ export default function App() {
         <div className={styles.headerRight}>
           <div className={styles.headerSearch}>
             <span className={styles.searchIcon}>🔍</span>
-            <input 
-              className={styles.headerSearchInput} 
-              value={globalQuery} 
-              placeholder="Search movies & shows..." 
-              onChange={e => setGlobalQuery(e.target.value)} 
-              onKeyDown={handleSearch} 
-            />
+            <input className={styles.headerSearchInput} value={globalQuery} placeholder="Search movies & shows..." onChange={e => setGlobalQuery(e.target.value)} onKeyDown={handleSearch} />
           </div>
         </div>
       </header>
-
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<HomeWrapper watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
@@ -386,21 +387,17 @@ export default function App() {
           <Route path="/anime" element={<AnimeWrapper watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/watchlist" element={<WatchlistPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/search" element={<SearchPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
-          {/* ✅ أهم حاجة - الروابط الديناميك اللي جوجل هيحبها */}
           <Route path="/movie/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/tv/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/anime/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
-          {/* للتوافق مع الروابط القديمة بدون slug */}
           <Route path="/movie/:id" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
         </Routes>
       </main>
-
       <footer className={styles.footer}><p className={styles.footerText}>&copy; {new Date().getFullYear()} All rights reserved <a href="https://www.codespecters.com/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Code Specter</a> | Digital Entertainment Democratized</p></footer>
     </div>
-  ) 
+  )
 }
 
-// Wrapper for main.jsx
 export function AppWithRouter() {
   return (
     <BrowserRouter>
