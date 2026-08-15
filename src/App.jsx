@@ -74,15 +74,34 @@ function clearJsonLd() {
 }
 
 function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
-  const { id } = useParams()
+  const { id, seasonNum: urlSeason, episodeNum: urlEpisode } = useParams()
+  const [searchParams] = useSearchParams()
   const [details, setDetails] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [seasonNum, setSeasonNum] = useState(1)
-  const [episodeNum, setEpisodeNum] = useState(1)
+  const [seasonNum, setSeasonNum] = useState(urlSeason ? parseInt(urlSeason) : 1)
+  const [episodeNum, setEpisodeNum] = useState(urlEpisode ? parseInt(urlEpisode) : 1)
   const [type, setType] = useState('movie')
   const [seasonDetails, setSeasonDetails] = useState(null)
   const [episodesLoading, setEpisodesLoading] = useState(false)
+  const navigate = useNavigate()
+
+  // If URL has ?s= & e= or /season/X/episode/Y, sync it
+  useEffect(() => {
+    if (urlSeason) setSeasonNum(parseInt(urlSeason))
+    if (urlEpisode) {
+      setEpisodeNum(parseInt(urlEpisode))
+      setIsPlaying(true)
+    }
+    const qS = searchParams.get('s')
+    const qE = searchParams.get('e')
+    if (qS) setSeasonNum(parseInt(qS))
+    if (qE) {
+      setEpisodeNum(parseInt(qE))
+      setIsPlaying(true)
+    }
+  }, [urlSeason, urlEpisode, searchParams])
+
 
   useEffect(() => {
     async function load() {
@@ -131,8 +150,14 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     const poster = posterUrl(details.poster_path, true)
     const backdrop = details.backdrop_path ? `https://image.tmdb.org/t/p/w1280${details.backdrop_path}` : poster
     const slug = slugify(title)
-    const canonicalUrl = `https://zero-tv.pages.dev/${type}/${id}${slug ? '-' + slug : ''}`
-    const fullTitle = `${title} ${year ? `(${year})` : ''} - Watch Online - Zero TV`.trim()
+    const isEpisodeView = !isMovie && isPlaying
+    const epSlugForUrl = seasonDetails?.episodes?.find(e => e.episode_number === episodeNum)?.name ? slugify(seasonDetails.episodes.find(e => e.episode_number === episodeNum).name) : ''
+    const canonicalUrl = isEpisodeView 
+      ? `https://zero-tv.pages.dev/${type}/${id}/${slug}/season/${seasonNum}/episode/${episodeNum}${epSlugForUrl ? '/' + epSlugForUrl : ''}`
+      : `https://zero-tv.pages.dev/${type}/${id}${slug ? '-' + slug : ''}`
+    const fullTitle = isEpisodeView
+      ? `${title} S${seasonNum}E${episodeNum} ${seasonDetails?.episodes?.find(e => e.episode_number === episodeNum)?.name || ''} - Watch Online - Zero TV`.trim()
+      : `${title} ${year ? `(${year})` : ''} - Watch Online - Zero TV`.trim()
 
     document.title = fullTitle
     setMeta('description', shortDesc)
@@ -257,10 +282,20 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
               <div style={{ color: '#888' }}>Loading episodes...</div>
             ) : seasonDetails && seasonDetails.episodes ? (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '10px' }}>
-                {seasonDetails.episodes.map(ep => (
+                {seasonDetails.episodes.map(ep => {
+                  const epSlug = slugify(ep.name || `episode-${ep.episode_number}`)
+                  const titleSlug = slugify(details?.name || details?.original_name || '')
+                  const episodeUrl = `/${type}/${id}/${titleSlug}/season/${seasonNum}/episode/${ep.episode_number}/${epSlug}`
+                  return (
                   <button
                     key={ep.id}
-                    onClick={() => { setEpisodeNum(ep.episode_number); setIsPlaying(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    onClick={() => { 
+                      setEpisodeNum(ep.episode_number); 
+                      setIsPlaying(true); 
+                      // Update URL with episode number + name
+                      navigate(episodeUrl);
+                      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                    }}
                     style={{
                       display: 'flex',
                       gap: '12px',
@@ -283,7 +318,8 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
                     </div>
                     {episodeNum === ep.episode_number && isPlaying && <span style={{ color: '#e50914', fontSize: '12px' }}>Playing</span>}
                   </button>
-                ))}
+                  )
+                })}
               </div>
             ) : (
               <div style={{ color: '#888' }}>No episodes found for this season</div>
@@ -457,6 +493,11 @@ export default function App() {
           <Route path="/movie/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/tv/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/anime/:id/:slug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
+          {/* Episode URLs with episode number + name */}
+          <Route path="/tv/:id/:slug?/season/:seasonNum/episode/:episodeNum/:episodeSlug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
+          <Route path="/anime/:id/:slug?/season/:seasonNum/episode/:episodeNum/:episodeSlug?" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
+          <Route path="/tv/:id/season/:seasonNum/episode/:episodeNum" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
+          <Route path="/anime/:id/season/:seasonNum/episode/:episodeNum" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
           <Route path="/movie/:id" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
         </Routes>
       </main>
