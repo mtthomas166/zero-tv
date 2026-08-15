@@ -80,17 +80,24 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [seasonNum, setSeasonNum] = useState(1)
   const [episodeNum, setEpisodeNum] = useState(1)
+function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
+  const { id } = useParams()
+  const [details, setDetails] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [seasonNum, setSeasonNum] = useState(1)
+  const [episodeNum, setEpisodeNum] = useState(1)
   const [type, setType] = useState('movie')
+  const [seasonDetails, setSeasonDetails] = useState(null)
+  const [episodesLoading, setEpisodesLoading] = useState(false)
 
   useEffect(() => {
     async function load() {
       setLoading(true)
       const path = window.location.pathname
       const isMoviePath = path.startsWith('/movie')
-      const isTvPath = path.startsWith('/tv') || path.startsWith('/anime')
       try {
         if (isMoviePath) {
-          // Movie page - try movie first
           try {
             const movieData = await api.movieDetails(id)
             if (movieData && movieData.title) {
@@ -99,12 +106,10 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
               return
             }
           } catch {}
-          // fallback to TV if movie not found
           const tvData = await api.tvDetails(id)
           setDetails(tvData)
           setType(tvData.genres?.some(g => g.name === 'Animation') || tvData.origin_country?.includes('JP') ? 'anime' : 'tv')
         } else {
-          // TV/Anime page - try TV first (fixes Naruto bug)
           try {
             const tvData = await api.tvDetails(id)
             if (tvData && (tvData.name || tvData.original_name)) {
@@ -114,7 +119,6 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
               return
             }
           } catch {}
-          // fallback to movie if TV not found
           const movieData = await api.movieDetails(id)
           setDetails(movieData)
           setType('movie')
@@ -123,6 +127,48 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     }
     load()
   }, [id])
+
+  // Fetch episodes when season changes
+  useEffect(() => {
+    if (!details || details.title) return // movie, skip
+    async function fetchSeason() {
+      setEpisodesLoading(true)
+      try {
+        const data = await api.seasonDetails(id, seasonNum)
+        setSeasonDetails(data)
+        // reset to first episode when season changes
+        if (data.episodes && data.episodes.length > 0) {
+          setEpisodeNum(data.episodes[0].episode_number)
+        }
+      } catch (e) {
+        console.error('season fetch error', e)
+        setSeasonDetails(null)
+      } finally {
+        setEpisodesLoading(false)
+      }
+    }
+    fetchSeason()
+  }, [id, seasonNum, details])
+  // Fetch episodes when season changes
+  useEffect(() => {
+    if (!details || details.title) return
+    async function fetchSeason() {
+      setEpisodesLoading(true)
+      try {
+        const data = await api.seasonDetails(id, seasonNum)
+        setSeasonDetails(data)
+        if (data.episodes && data.episodes.length > 0) {
+          setEpisodeNum(data.episodes[0].episode_number)
+        }
+      } catch (e) {
+        console.error('season fetch error', e)
+        setSeasonDetails(null)
+      } finally {
+        setEpisodesLoading(false)
+      }
+    }
+    fetchSeason()
+  }, [id, seasonNum, details])
 
   useEffect(() => {
     if (!details) return
@@ -227,10 +273,52 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
         </div>
       </div>
       {isPlaying && <div style={{ padding: '20px 28px' }}><Player tmdbId={id} type={isMovie ? 'movie' : 'tv'} season={seasonNum} episode={episodeNum} title={title} /></div>}
-      {!isMovie && seasons.length > 0 && (
+      {!isMovie && (
         <div style={{ padding: '0 28px 20px' }}>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
-            {seasons.map(s => <button key={s.id} onClick={() => setSeasonNum(s.season_number)} style={{ padding: '6px 12px', borderRadius: '8px', border: '1px solid #2a323f', background: seasonNum === s.season_number ? '#e50914' : '#1e242e', color: '#fff', cursor: 'pointer' }}>S{s.season_number}</button>)}
+          {seasons.length > 0 && (
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
+              {seasons.map(s => <button key={s.id} onClick={() => { setSeasonNum(s.season_number); setIsPlaying(false); }} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #2a323f', background: seasonNum === s.season_number ? '#e50914' : '#1e242e', color: '#fff', cursor: 'pointer', fontWeight: seasonNum === s.season_number ? 700 : 400 }}>Season {s.season_number}</button>)}
+            </div>
+          )}
+          
+          {/* Episodes List */}
+          <div style={{ marginTop: '10px' }}>
+            <h3 style={{ color: '#fff', marginBottom: '12px' }}>Episodes {seasonDetails ? `(${seasonDetails.episodes?.length || 0})` : ''}</h3>
+            {episodesLoading ? (
+              <div style={{ color: '#888' }}>Loading episodes...</div>
+            ) : seasonDetails && seasonDetails.episodes ? (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '10px' }}>
+                {seasonDetails.episodes.map(ep => (
+                  <button
+                    key={ep.id}
+                    onClick={() => { setEpisodeNum(ep.episode_number); setIsPlaying(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    style={{
+                      display: 'flex',
+                      gap: '12px',
+                      padding: '10px',
+                      borderRadius: '10px',
+                      border: episodeNum === ep.episode_number ? '2px solid #e50914' : '1px solid #2a323f',
+                      background: episodeNum === ep.episode_number ? '#1e242e' : '#151a23',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div style={{ width: '80px', height: '45px', background: '#0b0e12', borderRadius: '6px', overflow: 'hidden', flexShrink: 0 }}>
+                      {ep.still_path ? <img src={`https://image.tmdb.org/t/p/w200${ep.still_path}`} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#555', fontSize: '10px' }}>No Img</div>}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>E{ep.episode_number}: {ep.name || `Episode ${ep.episode_number}`}</div>
+                      <div style={{ fontSize: '11px', color: '#8d99a6', marginTop: '2px' }}>{ep.air_date || ''} {ep.runtime ? `• ${ep.runtime}m` : ''}</div>
+                    </div>
+                    {episodeNum === ep.episode_number && isPlaying && <span style={{ color: '#e50914', fontSize: '12px' }}>● Playing</span>}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div style={{ color: '#888' }}>No episodes found for this season</div>
+            )}
           </div>
         </div>
       )}
