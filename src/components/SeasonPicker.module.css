@@ -1,0 +1,13 @@
+
+.wrap{margin-bottom:28px;overflow:hidden;border:1px solid #252d36;border-radius:9px;background:#0f1318}
+.showHeader{display:flex;align-items:center;gap:13px;padding:13px;background:#13181e;border-bottom:1px solid #222a33}
+.showPoster{width:43px;height:61px;object-fit:cover;border-radius:5px}.showMeta{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.showName{color:#f0f3f6;font-size:14px;font-weight:800}.showYear{color:#697480;font-size:10px}.showRating{color:var(--accent);font-size:10px}
+.seasonTabs{display:flex;gap:6px;padding:10px 13px;overflow:auto;border-bottom:1px solid #202730}
+.seasonTab{flex-shrink:0;padding:6px 10px;border:1px solid #2b333d;border-radius:5px;background:#11161c;color:#7c8793;font-size:9px;font-weight:800}.seasonTab:hover{border-color:var(--accent);color:#fff}.seasonTab.seasonActive{background:var(--accent);border-color:var(--accent);color:#061014}
+.episodesWrap{padding:13px}.epGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}.epSkeleton{height:130px;border-radius:6px;background:linear-gradient(90deg,#151a20 25%,#1e252d 50%,#151a20 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.epCard{overflow:hidden;padding:0;border:1px solid #242c35;border-radius:6px;background:#14191f;text-align:left;transition:.2s}.epCard:hover{transform:translateY(-2px);border-color:var(--accent)}
+.epThumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#181d23}.epThumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}.epCard:hover .epThumb img{transform:scale(1.04)}
+.epThumbFallback{height:100%;display:grid;place-items:center;color:#4f5964}.epPlayOverlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);color:var(--accent);opacity:0;transition:.2s}.epCard:hover .epPlayOverlay{opacity:1}
+.epInfo{padding:7px 9px 9px;display:flex;flex-direction:column;gap:2px}.epNum{color:var(--accent);font-size:9px;font-weight:800}.epName{color:#c8ced5;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.epRating{color:#5e6873;font-size:9px}.noEps{color:#68727e;padding:15px 0;font-size:12px}
+@media(max-width:480px){.epGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}

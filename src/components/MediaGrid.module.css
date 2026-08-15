@@ -1,0 +1,149 @@
+/* =========================
+   MEDIA GRID
+========================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(145px, 1fr)
+    );
+
+  gap: 18px;
+
+  width: 100%;
+}
+
+
+/* =========================
+   SKELETON
+========================= */
+
+.skeleton {
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #11151b 25%,
+      #1b222a 50%,
+      #11151b 75%
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    shimmer 1.4s infinite;
+}
+
+
+@keyframes shimmer {
+
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+  width: 100%;
+
+  text-align: center;
+
+  color: #68727d;
+
+  padding: 55px 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   LARGE SCREENS
+========================= */
+
+@media (min-width: 1400px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(155px, 1fr)
+      );
+
+    gap: 20px;
+  }
+
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(0, 1fr)
+      );
+
+    gap: 14px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+
+    gap: 10px;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 390px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 10px;
+  }
+
+}

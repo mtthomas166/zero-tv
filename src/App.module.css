@@ -1,0 +1,348 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 max(20px, 3vw);
+
+  background: rgba(7, 9, 13, 0.94);
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid #1b2128;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  border: 0;
+  background: none;
+
+  color: #ffffff;
+
+  padding: 0;
+
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.logoAccent {
+  color: var(--accent);
+}
+
+.logoDot {
+  color: #4b5661;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  margin-left: 28px;
+}
+
+.tab {
+  position: relative;
+
+  border: 0;
+  background: transparent;
+
+  color: #727c87;
+
+  padding: 9px 13px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.tab:hover {
+  color: #ffffff;
+}
+
+.tab.active {
+  color: #ffffff;
+}
+
+.tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 12px;
+  right: 12px;
+  bottom: 1px;
+
+  height: 2px;
+
+  border-radius: 4px;
+
+  background: var(--accent);
+}
+
+/* =========================
+   HEADER RIGHT
+========================= */
+
+.headerRight {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+/* =========================
+   HEADER SEARCH
+========================= */
+
+.headerSearch {
+  width: 250px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  height: 36px;
+
+  background: #11171d;
+
+  border: 1px solid #26313a;
+
+  border-radius: 8px;
+
+  transition: 0.2s ease;
+}
+
+.headerSearch:focus-within {
+  border-color: rgba(18, 198, 217, 0.65);
+
+  box-shadow:
+    0 0 0 3px rgba(18, 198, 217, 0.08);
+}
+
+.searchIcon {
+  color: #64717d;
+
+  font-size: 14px;
+
+  margin-right: 8px;
+}
+
+.headerSearchInput {
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #e8edf1;
+
+  font-size: 11px;
+}
+
+.headerSearchInput::placeholder {
+  color: #59646f;
+}
+
+/* =========================
+   API BUTTON
+========================= */
+
+.apiButton {
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 14px;
+
+  border: 1px solid rgba(18, 198, 217, 0.35);
+
+  border-radius: 8px;
+
+  background: rgba(18, 198, 217, 0.08);
+
+  color: var(--accent);
+
+  font-size: 11px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.apiButton:hover {
+  background: rgba(18, 198, 217, 0.16);
+
+  border-color: var(--accent);
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+  flex: 1;
+
+  width: min(1240px, 100%);
+
+  margin: auto;
+
+  padding: 28px max(16px, 3vw) 55px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  border-top: 1px solid #171c22;
+
+  padding: 22px 16px;
+
+  text-align: center;
+
+  background: #080a0d;
+}
+
+.footerText {
+  font-size: 10px;
+
+  color: #47515c;
+
+  letter-spacing: 0.04em;
+}
+
+.footerLink {
+  color: var(--accent);
+
+  text-decoration: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+  .header {
+    height: 62px;
+
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .tabs {
+    margin-left: 15px;
+  }
+
+  .tab {
+    padding: 8px 8px;
+
+    font-size: 10px;
+  }
+
+  .headerSearch {
+    width: 180px;
+  }
+
+  .apiButton {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .header {
+    height: auto;
+    min-height: 58px;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 10px 12px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .tabs {
+    order: 3;
+
+    width: 100%;
+
+    margin-left: 0;
+
+    justify-content: center;
+  }
+
+  .tab {
+    padding: 6px 10px;
+
+    font-size: 10px;
+  }
+
+  .headerRight {
+    gap: 6px;
+  }
+
+  .headerSearch {
+    width: 130px;
+    height: 34px;
+  }
+
+  .apiButton {
+    height: 34px;
+
+    padding: 0 9px;
+
+    font-size: 9px;
+  }
+
+  .main {
+    padding: 20px 10px 40px;
+  }
+}

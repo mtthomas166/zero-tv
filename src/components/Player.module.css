@@ -1,0 +1,105 @@
+.playerWrapper {
+  width: 100%;
+  background: #0f0f0f;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.serverBar {
+  background: #1a1a1a;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+.serverLabel {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.movieTitle {
+  color: #f5c518;
+  font-weight: bold;
+}
+
+.serverList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.serverBtn {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #444;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.serverBtn:hover {
+  background: #333;
+  color: #fff;
+  border-color: #666;
+}
+
+.serverBtn.active {
+  background: #e50914;
+  color: #fff;
+  border-color: #e50914;
+  font-weight: bold;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background: #000;
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #333;
+  border-top: 3px solid #e50914;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.adSlot {
+  background: #111;
+  padding: 10px;
+  text-align: center;
+  min-height: 50px;
+}
