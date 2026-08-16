@@ -1,5 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './Player.module.css';
+
+const VAST_TAG = 'https://s.magsrv.com/v1/vast.php?idzone=6003446';
 
 const SERVERS = [
   {
@@ -71,6 +73,11 @@ const SERVERS = [
 export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1, title }) {
   const [activeServer, setActiveServer] = useState('autoembed');
   const [isLoading, setIsLoading] = useState(true);
+  const [phase, setPhase] = useState('ad'); // 'ad' | 'content'
+  const [canSkip, setCanSkip] = useState(false);
+  const [adError, setAdError] = useState(false);
+  const videoRef = useRef(null);
+  const fluidRef = useRef(null);
 
   const activeServerData = useMemo(() => 
     SERVERS.find(s => s.id === activeServer) || SERVERS[0], 
@@ -82,6 +89,171 @@ export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1
     return activeServerData.getUrl(tmdbId, type, season, episode);
   }, [tmdbId, type, season, episode, activeServerData]);
 
+  // Load Fluid Player for VAST
+  useEffect(() => {
+    if (phase !== 'ad') return;
+
+    const loadFluid = () => {
+      return new Promise((resolve, reject) => {
+        if (window.fluidPlayer) {
+          resolve();
+          return;
+        }
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css';
+        document.head.appendChild(link);
+
+        const script = document.createElement('script');
+        script.src = 'https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    };
+
+    loadFluid().then(() => {
+      if (!videoRef.current) return;
+      
+      try {
+        const player = window.fluidPlayer('vast-ad-player', {
+          layoutControls: {
+            fillToContainer: true,
+            autoPlay: true,
+            mute: false,
+            allowTheatre: false,
+            playButtonShowing: true,
+            playPauseAnimation: true,
+          },
+          vastOptions: {
+            adList: [
+              {
+                roll: 'preRoll',
+                vastTag: VAST_TAG,
+                adText: 'Advertisement - Zero TV',
+              }
+            ],
+            adCTAText: 'Visit Site',
+            adCTATextPosition: 'bottom right',
+            vastAdvanced: {
+              vastLoadedCallback: () => console.log('VAST loaded'),
+              noVastVideoCallback: () => {
+                console.log('No VAST, skipping to content');
+                setPhase('content');
+              },
+              vastVideoSkippedCallback: () => {
+                console.log('Ad skipped');
+                setPhase('content');
+              },
+              vastVideoEndedCallback: () => {
+                console.log('Ad ended');
+                setPhase('content');
+              },
+            }
+          }
+        });
+        fluidRef.current = player;
+
+        // Enable skip after 5 seconds
+        setTimeout(() => setCanSkip(true), 5000);
+
+        // Fallback: if ad doesn't load in 15s, go to content
+        setTimeout(() => {
+          if (phase === 'ad') {
+            console.log('Ad timeout, going to content');
+            setPhase('content');
+          }
+        }, 15000);
+
+      } catch (e) {
+        console.error('Fluid Player error', e);
+        setAdError(true);
+        setPhase('content');
+      }
+    }).catch(() => {
+      setAdError(true);
+      setPhase('content');
+    });
+
+    return () => {
+      try {
+        if (fluidRef.current) {
+          fluidRef.current.destroy();
+        }
+      } catch {}
+    };
+  }, [phase]);
+
+  const handleSkipAd = () => {
+    setPhase('content');
+  };
+
+  // Ad Phase
+  if (phase === 'ad') {
+    return (
+      <div className={styles.playerWrapper}>
+        <div className={styles.videoContainer} style={{ position: 'relative', background: '#000', minHeight: '400px' }}>
+          <video 
+            ref={videoRef}
+            id="vast-ad-player"
+            style={{ width: '100%', height: '100%', minHeight: '400px' }}
+            playsInline
+          >
+            {/* Fluid Player will load VAST ad here */}
+          </video>
+          
+          <div style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 10,
+            display: 'flex',
+            gap: '10px',
+            alignItems: 'center'
+          }}>
+            {canSkip && (
+              <button
+                onClick={handleSkipAd}
+                style={{
+                  background: 'rgba(255,255,255,0.9)',
+                  color: '#000',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '14px'
+                }}
+              >
+                Skip Ad →
+              </button>
+            )}
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            background: 'rgba(229, 9, 20, 0.9)',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            zIndex: 10
+          }}>
+            Ad - Supports Zero TV
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center', padding: '10px', background: '#111', color: '#888', fontSize: '12px' }}>
+          Ad will end soon, movie starts after ad... 
+          {canSkip && <span style={{ color: '#fff', marginLeft: '10px' }}>You can skip now</span>}
+        </div>
+      </div>
+    );
+  }
+
+  // Content Phase (original player)
   return (
     <div className={styles.playerWrapper}>
       <div className={styles.serverBar}>
@@ -127,7 +299,7 @@ export default function Player({ tmdbId, type = 'movie', season = 1, episode = 1
 
       <div className={styles.adSlot}>
         <p style={{fontSize:'12px', color:'#888', textAlign:'center', marginTop:'10px'}}>
-          If video is not working, try another server above
+          If video is not working, try another server above • Ad revenue supports Zero TV
         </p>
       </div>
     </div>
