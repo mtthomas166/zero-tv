@@ -467,7 +467,10 @@ export default function App() {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
-        <Link to="/" className={styles.logo} style={{ textDecoration: 'none' }}><span className={styles.logoAccent}>zero</span><span className={styles.logoDot}>·</span>tv</Link>
+        <Link to="/" className={styles.logo} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src="/zero-tv-icon.png" alt="Zero TV" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+          <img src="/zero-tv-logo.png" alt="Zero TV" style={{ height: '26px', objectFit: 'contain' }} />
+        </Link>
         <nav className={styles.tabs}>
           <NavLink to="/" className={({ isActive }) => `${styles.tab} ${isActive ? styles.active : ''}`}>Home</NavLink>
           <NavLink to="/movies" className={({ isActive }) => `${styles.tab} ${isActive ? styles.active : ''}`}>Movies</NavLink>
