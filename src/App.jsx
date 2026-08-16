@@ -409,7 +409,7 @@ function MoviesWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
 }
 
 function TVWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
   useEffect(() => {
     document.title = 'TV Shows - Zero TV'
     setMeta('description', 'Watch latest TV shows online in HD quality')
