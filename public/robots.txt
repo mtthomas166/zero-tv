@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
+Allow: /movie/
+Allow: /tv/
+Allow: /search
+Disallow: /api/
+Disallow: /admin/
 
 Sitemap: https://zero-tv.pages.dev/sitemap.xml
+
+# SEO: Crawl-delay for better performance
+Crawl-delay: 1
+
+# For Google
+User-agent: Googlebot
+Allow: /
+
+# For Bing
+User-agent: Bingbot
+Allow: /
