@@ -409,7 +409,7 @@ function MoviesWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
 }
 
 function TVWrapper({ watchlist, onWatchlistChange, isInWatchlist }) {
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
   useEffect(() => {
     document.title = 'TV Shows - Zero TV'
     setMeta('description', 'Watch latest TV shows online in HD quality')
@@ -504,7 +504,11 @@ export default function App() {
           <Route path="/movie/:id" element={<DetailsPage watchlist={watchlist} onWatchlistChange={toggleWatchlist} isInWatchlist={isInWatchlist} />} />
         </Routes>
       </main>
-      <footer className={styles.footer}><p className={styles.footerText}>&copy; {new Date().getFullYear()} All rights reserved <a href="https://www.codespecters.com/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Code Specter</a> | Digital Entertainment Democratized</p></footer>
+      <footer className={styles.footer}>
+        <p className={styles.footerText} style={{textAlign:'center', padding:'20px', color:'#666', fontSize:'13px'}}>
+          &copy; {new Date().getFullYear()} Zero TV - Watch Movies & TV Shows Free | All Rights Reserved
+        </p>
+      </footer>
     </div>
   )
 }
