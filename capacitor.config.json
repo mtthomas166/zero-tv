@@ -1,10 +1,5 @@
 {
   "appId": "com.zerotv.app",
   "appName": "Zero TV",
-  "webDir": "dist",
-  "bundledWebRuntime": false,
-  "server": {
-    "androidScheme": "https",
-    "cleartext": true
-  }
+  "webDir": "dist"
 }

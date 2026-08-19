@@ -21,10 +21,10 @@ jobs:
           
       - uses: android-actions/setup-android@v3
 
-      - name: Install deps
+      - name: Install stable Capacitor
         run: |
           npm install
-          npm install @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
+          npm install @capacitor/core@6.2.0 @capacitor/cli@6.2.0 @capacitor/android@6.2.0 --save-exact
 
       - name: Build Web
         run: npm run build
@@ -35,7 +35,7 @@ jobs:
           npx cap copy android
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
