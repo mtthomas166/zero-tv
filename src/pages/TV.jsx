@@ -12,6 +12,7 @@ const categories = [
 
 const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-tv-active'
+const SCROLL_KEY = 'zero-tv-scroll'
 
 export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSelect }) {
   const [active, setActive] = useState(() => {
@@ -23,7 +24,6 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
   const [nextPage, setNextPage] = useState(5)
   const [hasMore, setHasMore] = useState(true)
 
-  // احفظ الفلتر
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, active)
   }, [active])
@@ -42,11 +42,12 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
           if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: false })
         })
         setItems(Array.from(uniqueMap.values()).slice(0, 70))
-        // رجع مكان الاسكرول
-        const savedScroll = sessionStorage.getItem('zero-tv-scroll')
+        const savedScroll = sessionStorage.getItem(SCROLL_KEY)
         if (savedScroll) {
-          setTimeout(() => window.scrollTo(0, parseInt(savedScroll)), 100)
-          sessionStorage.removeItem('zero-tv-scroll')
+          setTimeout(() => {
+            window.scrollTo(0, parseInt(savedScroll))
+            sessionStorage.removeItem(SCROLL_KEY)
+          }, 150)
         }
       } catch (e) { console.error(e) }
       finally { setLoading(false) }
@@ -55,9 +56,8 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
   }, [active])
 
   const handleSelect = (item) => {
-    // احفظ مكانك قبل ما تفتح الفيلم
-    sessionStorage.setItem('zero-tv-scroll', window.scrollY.toString())
-    localStorage.setItem(STORAGE_KEY, active)
+    sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString())
+    sessionStorage.setItem('zero-tv-last-path', window.location.pathname)
     onSelect(item)
   }
 
@@ -94,4 +94,15 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
-          <button key={cat.key} onClick={() => setActive(cat.key)} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff
+          <button key={cat.key} onClick={() => setActive(cat.key)} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>{cat.label}</button>
+        ))}
+      </div>
+      <MediaGrid items={items} type="tv" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
+      {!loading && hasMore && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
+          <button onClick={handleLoadMore} disabled={loadingMore} style={{ minHeight: '44px', padding: '0 28px', borderRadius: '10px', border: '1px solid rgba(255,255,255,.12)', background: loadingMore? 'rgba(255,255,255,.06)' : '#e50914', color: '#fff', fontWeight: 800, fontSize: '13px', cursor: loadingMore? 'not-allowed' : 'pointer' }}>{loadingMore? 'Loading...' : 'Load More +70'}</button>
+        </div>
+      )}
+    </div>
+  )
+}
