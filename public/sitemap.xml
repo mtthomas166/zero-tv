@@ -21,12 +21,12 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1084244-toy-story-5</loc>
+    <loc>https://zero-tv.pages.dev/movie/969681-spider-man-brand-new-day</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/969681-spider-man-brand-new-day</loc>
+    <loc>https://zero-tv.pages.dev/movie/1084244-toy-story-5</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -36,17 +36,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1101383-the-end-of-oak-street</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zero-tv.pages.dev/movie/1315772-minions-monsters</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/movie/1003596-avengers-doomsday</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -56,12 +46,17 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/950028-the-invite</loc>
+    <loc>https://zero-tv.pages.dev/movie/1101383-the-end-of-oak-street</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1291595-insidious-out-of-the-further</loc>
+    <loc>https://zero-tv.pages.dev/movie/1003596-avengers-doomsday</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/movie/950028-the-invite</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -76,12 +71,27 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1504358-don-t-say-good-luck</loc>
+    <loc>https://zero-tv.pages.dev/movie/1288445-mutiny</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zero-tv.pages.dev/movie/1275779-disclosure-day</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/movie/1291595-insidious-out-of-the-further</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/movie/1504358-don-t-say-good-luck</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/movie/1083381-backrooms</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -96,27 +106,17 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1083381-backrooms</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/movie/1418582-here-the-whole-time</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zero-tv.pages.dev/movie/1280738-the-furious</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1308767-young-washington</loc>
+    <loc>https://zero-tv.pages.dev/movie/1212763-evil-dead-burn</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/movie/1212763-evil-dead-burn</loc>
+    <loc>https://zero-tv.pages.dev/movie/1308767-young-washington</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -361,6 +361,51 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/1/pilot</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/2/episode-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/3/episode-3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/4/episode-4</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/5/episode-5</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/6/episode-6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/7/episode-7</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/8/episode-8</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://zero-tv.pages.dev/tv/108978-reacher</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -486,51 +531,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/1/pilot</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/2/episode-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/3/episode-3</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/4/episode-4</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/5/episode-5</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/6/episode-6</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/7/episode-7</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/95350-lanterns/season/1/episode/8/episode-8</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://zero-tv.pages.dev/tv/278624-lucky</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -567,6 +567,296 @@
   </url>
   <url>
     <loc>https://zero-tv.pages.dev/tv/278624-lucky/season/1/episode/7/all-good-things</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/1/freedom-day</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/2/holston-s-pick</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/3/machines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/4/truth</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/5/the-janitor-s-boy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/6/the-relic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/7/the-flamekeepers</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/8/hanna</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/9/the-getaway</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/10/outside</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/1/the-engineer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/2/order</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/3/solo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/4/the-harmonium</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/5/descent</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/6/barricades</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/7/the-dive</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/8/the-book-of-quinn</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/9/the-safeguard</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/10/into-the-fire</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/1/who-are-you</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/2/it-s-all-good</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/3/a-dark-web</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/4/whatever-you-do-don-t-go-home</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/5/memory</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/6/the-drive</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/7/radio</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/8/gray-goo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/9/farewell</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/10/troy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/1/the-heirs-of-the-dragon</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/2/the-rogue-prince</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/3/second-of-his-name</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/4/king-of-the-narrow-sea</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/5/we-light-the-way</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/6/the-princess-and-the-queen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/7/driftmark</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/8/the-lord-of-the-tides</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/9/the-green-council</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/10/the-black-queen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/1/a-son-for-a-son</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/2/rhaenyra-the-cruel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/3/the-burning-mill</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/4/the-red-dragon-and-the-gold</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/5/regent</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/6/smallfolk</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/7/the-red-sowing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/8/the-queen-who-ever-was</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/1/salt-and-sea-fire-and-blood</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/2/queen-s-landing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/3/rhaenyra-triumphant</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/4/tumbleton</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/5/unbowed-and-unbent</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/6/faceless-men</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/7/the-dragon-in-winter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/8/the-treasons-at-tumbleton</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -746,141 +1036,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/1/the-heirs-of-the-dragon</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/2/the-rogue-prince</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/3/second-of-his-name</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/4/king-of-the-narrow-sea</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/5/we-light-the-way</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/6/the-princess-and-the-queen</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/7/driftmark</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/8/the-lord-of-the-tides</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/9/the-green-council</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/1/episode/10/the-black-queen</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/1/a-son-for-a-son</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/2/rhaenyra-the-cruel</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/3/the-burning-mill</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/4/the-red-dragon-and-the-gold</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/5/regent</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/6/smallfolk</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/7/the-red-sowing</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/2/episode/8/the-queen-who-ever-was</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/1/salt-and-sea-fire-and-blood</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/2/queen-s-landing</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/3/rhaenyra-triumphant</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/4/tumbleton</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/5/unbowed-and-unbent</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/6/faceless-men</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/7/the-dragon-in-winter</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/94997-house-of-the-dragon/season/3/episode/8/the-treasons-at-tumbleton</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://zero-tv.pages.dev/tv/113962-lioness</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -1006,157 +1161,462 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/1/freedom-day</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/1/i-m-luffy-the-man-who-will-become-the-pirate-king</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/2/holston-s-pick</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/2/the-great-swordsman-appears-pirate-hunter-roronoa-zoro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/3/machines</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/3/morgan-vs-luffy-who-s-this-beautiful-young-girl</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/4/truth</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/4/luffy-s-past-the-red-haired-shanks-appears</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/5/the-janitor-s-boy</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/5/fear-mysterious-power-pirate-clown-captain-buggy</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/6/the-relic</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/6/desperate-situation-beast-tamer-mohji-vs-luffy</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/7/the-flamekeepers</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/7/grand-duel-zoro-the-swordsman-vs-cabaji-the-acrobat</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/8/hanna</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/8/who-will-win-showdown-between-the-true-powers-of-the-devil</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/9/the-getaway</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/9/the-honorable-liar-captain-usopp</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/1/episode/10/outside</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/10/the-weirdest-guy-ever-jango-the-hypnotist</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/1/the-engineer</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/11/expose-the-plot-pirate-butler-captain-kuro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/2/order</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/12/clash-with-the-black-cat-pirates-the-great-battle-on-the-slo</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/3/solo</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/13/the-terrifying-duo-meowban-brothers-vs-zoro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/4/the-harmonium</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/14/luffy-back-in-action-miss-kaya-s-desperate-resistance</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/5/descent</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/15/beat-kuro-usopp-the-man-s-tearful-resolve</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/6/barricades</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/16/protect-kaya-the-usopp-pirates-great-efforts</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/7/the-dive</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/17/anger-explosion-kuro-vs-luffy-how-it-ends</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/8/the-book-of-quinn</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/18/you-re-the-weird-creature-gaimon-and-his-strange-friends</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/9/the-safeguard</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/19/the-three-sword-style-s-past-zoro-and-kuina-s-vow</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/2/episode/10/into-the-fire</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/20/famous-cook-sanji-of-the-sea-restaurant</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/1/who-are-you</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/21/unwelcome-customer-sanji-s-food-and-ghin-s-debt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/2/it-s-all-good</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/22/the-strongest-pirate-fleet-commodore-don-krieg</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/3/a-dark-web</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/23/protect-baratie-the-great-pirate-red-foot-zeff</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/4/whatever-you-do-don-t-go-home</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/24/hawk-eye-mihawk-the-great-swordsman-zoro-falls-at-sea</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/5/memory</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/25/the-deadly-foot-technique-bursts-forth-sanji-vs-the-invincib</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/6/the-drive</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/26/zeff-and-sanji-s-dream-the-illusory-all-blue</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/7/radio</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/27/cool-headed-cold-hearted-demon-pirate-fleet-chief-commander-</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/8/gray-goo</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/28/i-won-t-die-fierce-battle-luffy-vs-krieg</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/9/farewell</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/29/the-conclusion-of-the-deadly-battle-a-spear-of-blind-determi</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/125988-silo/season/3/episode/10/troy</loc>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/30/set-sail-the-seafaring-cook-sets-off-with-luffy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/31/the-worst-man-in-the-eastern-seas-fishman-pirate-arlong</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/32/witch-of-cocoyashi-village-arlong-s-female-leader</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/33/usopp-dead-when-is-luffy-going-to-make-landfall</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/34/everyone-s-gathered-usopp-speaks-the-truth-about-nami</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/35/untold-past-female-warrior-bellemere</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/36/survive-mother-bellemere-and-nami-s-bond</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/37/luffy-rises-result-of-the-broken-promise</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/38/luffy-in-big-trouble-fishmen-vs-the-luffy-pirates</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/39/luffy-submerged-zoro-vs-hatchan-the-octopus</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/40/proud-warriors-sanji-and-usopp-s-fierce-battles</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/41/luffy-at-full-power-nami-s-determination-and-the-straw-hat</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/42/explosion-fishman-arlong-s-fierce-assault-from-the-sea</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/43/end-of-the-fishman-empire-nami-s-my-friend</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/44/setting-out-with-a-smile-farewell-hometown-cocoyashi-village</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/45/bounty-straw-hat-luffy-becomes-known-to-the-world</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/46/chase-straw-hat-little-buggy-s-big-adventure</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/47/the-wait-is-over-the-return-of-captain-buggy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/48/the-town-of-the-beginning-and-the-end-landfall-at-logue-town</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/49/zoro-s-new-swords-and-the-woman-sergeant-major</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/50/usopp-vs-daddy-the-parent-showdown-at-high</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/51/fiery-cooking-battle-sanji-vs-the-beautiful-chef</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/52/buggy-s-revenge-the-man-who-smiles-on-the-execution-platform</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/53/the-legend-has-started-head-for-the-grand-line</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/54/precursor-to-a-new-adventure-apis-a-mysterious-girl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/55/miraculous-creature-apis-s-secret-and-the-legendary-island</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/56/eric-attacks-great-escape-from-warship-island</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/57/a-solitary-island-in-the-distant-sea-the-legendary-lost-isla</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/58/showdown-in-the-ruins-tense-zoro-vs-eric</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/59/luffy-completely-surrounded-commodore-nelson-s-secret-strate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/60/through-the-sky-they-soar-the-1000-year-legend-lives-again</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/61/an-angry-showdown-cross-the-red-line</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/62/the-first-line-of-defense-the-giant-whale-laboon-appears</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/63/a-promise-between-men-luffy-and-the-whale-vow-to-meet-again</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/64/a-town-that-welcomes-pirates-setting-foot-on-whisky-peak</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/65/explosion-the-three-swords-style-zoro-vs-baroque-works</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/66/all-out-battle-luffy-vs-zoro-mysterious-grand-duel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/67/deliver-princess-vivi-the-luffy-pirates-set-sail</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/68/try-hard-coby-coby-and-helmeppo-s-struggles-in-the-marines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/69/coby-and-helmeppo-s-resolve-vice-admiral-garp-s-parental-aff</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/70/an-ancient-island-the-shadow-hiding-in-little-garden</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/71/huge-duel-the-giants-dorry-and-broggy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/72/luffy-gets-angry-a-dirty-trick-violates-the-sacred-duel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/73/broggy-s-bitter-tears-of-victory-the-conclusion-of-elbaf</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/74/the-devilish-candle-tears-of-regret-and-tears-of-anger</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/75/a-hex-on-luffy-colors-trap</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/76/time-to-fight-back-usopp-s-quick-thinking-and-fire-star</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/77/farewell-giant-island-head-for-alabasta</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/78/nami-s-sick-beyond-the-snow-falling-on-the-sea</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/79/a-raid-the-tin-tyrant-and-tin-plate-wapol</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/80/an-island-without-doctors-adventure-in-a-nameless-land</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/81/are-you-happy-the-doctor-called-witch</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/82/dalton-s-resolve-wapol-s-corps-lands-on-the-island</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/83/the-island-where-snow-lives-climb-the-drum-rockies</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/84/blue-nosed-reindeer-chopper-s-secret</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/85/an-outcast-s-dream-hiriluk-the-quack</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/86/hiriluk-s-cherry-blossoms-and-the-will-that-gets-carried-on</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/87/fight-wapol-s-crew-the-power-of-the-munch-munch-fruit</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/88/zoan-type-devil-fruit-chopper-s-seven-form-transformation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/89/when-the-kingdom-s-rule-ends-the-flag-of-faith-flies-forever</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/90/hiriluk-s-cherry-blossoms-miracle-in-the-drum-rockies</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/91/goodbye-drum-island-i-m-going-out-to-sea</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3246,462 +3706,602 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/1/i-m-luffy-the-man-who-will-become-the-pirate-king</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/1/murthehelp</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/2/the-great-swordsman-appears-pirate-hunter-roronoa-zoro</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/2/jeong-jinman-jeong-jinman-jeong-jinman</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/3/morgan-vs-luffy-who-s-this-beautiful-young-girl</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/3/the-strong-don-t-howl</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/4/luffy-s-past-the-red-haired-shanks-appears</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/4/the-shopping-mall</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/5/fear-mysterious-power-pirate-clown-captain-buggy</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/5/babylon</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/6/desperate-situation-beast-tamer-mohji-vs-luffy</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/6/jeong-jinman</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/7/grand-duel-zoro-the-swordsman-vs-cabaji-the-acrobat</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/7/trap</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/8/who-will-win-showdown-between-the-true-powers-of-the-devil</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/8/listen-up-jian</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/9/the-honorable-liar-captain-usopp</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/1/jinman-that-same-day</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/10/the-weirdest-guy-ever-jango-the-hypnotist</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/2/recluse</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/11/expose-the-plot-pirate-butler-captain-kuro</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/3/past-is-past-present-is-present</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/12/clash-with-the-black-cat-pirates-the-great-battle-on-the-slo</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/4/raid</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/13/the-terrifying-duo-meowban-brothers-vs-zoro</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/5/negotiation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/14/luffy-back-in-action-miss-kaya-s-desperate-resistance</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/6/the-trojan-horse</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/15/beat-kuro-usopp-the-man-s-tearful-resolve</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/7/the-enemy-of-my-enemy</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/16/protect-kaya-the-usopp-pirates-great-efforts</loc>
+    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/8/listen-up-jinman</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/17/anger-explosion-kuro-vs-luffy-how-it-ends</loc>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97</loc>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/1/to-me-my-x-men</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/2/mutant-liberation-begins</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/3/fire-made-flesh</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/4/motendo-lifedeath-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/5/remember-it</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/6/lifedeath-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/7/bright-eyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/8/tolerance-is-extinction-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/9/tolerance-is-extinction-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/10/tolerance-is-extinction-3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/1/days-of-past-future</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/2/a-force-to-be-reckoned-with</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/3/rise-of-apocalypse-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/4/rise-of-apocalypse-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/5/weapon-x-lies-and-dvds</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/6/danger-exe</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/7/strange-land-savage-heart</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/8/the-dead-man-s-hand</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/9/survival-of-the-fittest</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/1/space-pilot-3000</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/2/the-series-has-landed</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/3/i-roommate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/4/love-s-labours-lost-in-space</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/18/you-re-the-weird-creature-gaimon-and-his-strange-friends</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/5/fear-of-a-bot-planet</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/19/the-three-sword-style-s-past-zoro-and-kuina-s-vow</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/6/a-fishful-of-dollars</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/20/famous-cook-sanji-of-the-sea-restaurant</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/7/my-three-suns</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/21/unwelcome-customer-sanji-s-food-and-ghin-s-debt</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/8/a-big-piece-of-garbage</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/22/the-strongest-pirate-fleet-commodore-don-krieg</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/9/hell-is-other-robots</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/23/protect-baratie-the-great-pirate-red-foot-zeff</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/1/a-flight-to-remember</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/24/hawk-eye-mihawk-the-great-swordsman-zoro-falls-at-sea</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/2/mars-university</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/25/the-deadly-foot-technique-bursts-forth-sanji-vs-the-invincib</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/3/when-aliens-attack</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/26/zeff-and-sanji-s-dream-the-illusory-all-blue</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/4/fry-the-slurm-factory</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/27/cool-headed-cold-hearted-demon-pirate-fleet-chief-commander-</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/5/i-second-that-emotion</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/28/i-won-t-die-fierce-battle-luffy-vs-krieg</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/6/brannigan-begin-again</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/29/the-conclusion-of-the-deadly-battle-a-spear-of-blind-determi</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/7/a-head-in-the-polls</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/30/set-sail-the-seafaring-cook-sets-off-with-luffy</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/8/xmas-story</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/31/the-worst-man-in-the-eastern-seas-fishman-pirate-arlong</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/9/why-must-i-be-a-crustacean-in-love</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/32/witch-of-cocoyashi-village-arlong-s-female-leader</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/10/put-your-head-on-my-shoulders</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/33/usopp-dead-when-is-luffy-going-to-make-landfall</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/11/lesser-of-two-evils</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/34/everyone-s-gathered-usopp-speaks-the-truth-about-nami</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/12/raging-bender</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/35/untold-past-female-warrior-bellemere</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/13/a-bicyclops-built-for-two</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/36/survive-mother-bellemere-and-nami-s-bond</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/14/how-hermes-requisitioned-his-groove-back</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/37/luffy-rises-result-of-the-broken-promise</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/15/a-clone-of-my-own</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/38/luffy-in-big-trouble-fishmen-vs-the-luffy-pirates</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/16/the-deep-south</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/39/luffy-submerged-zoro-vs-hatchan-the-octopus</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/17/bender-gets-made</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/40/proud-warriors-sanji-and-usopp-s-fierce-battles</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/18/the-problem-with-popplers</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/41/luffy-at-full-power-nami-s-determination-and-the-straw-hat</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/19/mother-s-day</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/42/explosion-fishman-arlong-s-fierce-assault-from-the-sea</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/20/anthology-of-interest-i</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/43/end-of-the-fishman-empire-nami-s-my-friend</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/1/the-honking</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/44/setting-out-with-a-smile-farewell-hometown-cocoyashi-village</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/2/war-is-the-h-word</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/45/bounty-straw-hat-luffy-becomes-known-to-the-world</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/3/the-cryonic-woman</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/46/chase-straw-hat-little-buggy-s-big-adventure</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/4/parasites-lost</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/47/the-wait-is-over-the-return-of-captain-buggy</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/5/amazon-women-in-the-mood</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/48/the-town-of-the-beginning-and-the-end-landfall-at-logue-town</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/6/bendless-love</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/49/zoro-s-new-swords-and-the-woman-sergeant-major</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/7/the-day-the-earth-stood-stupid</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/50/usopp-vs-daddy-the-parent-showdown-at-high</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/8/that-s-lobstertainment</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/51/fiery-cooking-battle-sanji-vs-the-beautiful-chef</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/9/the-birdbot-of-ice-catraz</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/52/buggy-s-revenge-the-man-who-smiles-on-the-execution-platform</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/10/the-luck-of-the-fryrish</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/53/the-legend-has-started-head-for-the-grand-line</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/11/the-cyber-house-rules</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/54/precursor-to-a-new-adventure-apis-a-mysterious-girl</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/12/insane-in-the-mainframe</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/55/miraculous-creature-apis-s-secret-and-the-legendary-island</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/13/bendin-in-the-wind</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/56/eric-attacks-great-escape-from-warship-island</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/14/time-keeps-on-slippin</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/57/a-solitary-island-in-the-distant-sea-the-legendary-lost-isla</loc>
+    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/15/i-dated-a-robot</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/58/showdown-in-the-ruins-tense-zoro-vs-eric</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine</loc>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/1/episode-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/2/episode-2</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/59/luffy-completely-surrounded-commodore-nelson-s-secret-strate</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/3/episode-3</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/60/through-the-sky-they-soar-the-1000-year-legend-lives-again</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/4/episode-4</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/1/episode/61/an-angry-showdown-cross-the-red-line</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/5/episode-5</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/62/the-first-line-of-defense-the-giant-whale-laboon-appears</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/6/episode-6</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/63/a-promise-between-men-luffy-and-the-whale-vow-to-meet-again</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/7/episode-7</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/64/a-town-that-welcomes-pirates-setting-foot-on-whisky-peak</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/8/episode-8</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/65/explosion-the-three-swords-style-zoro-vs-baroque-works</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/9/episode-9</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/66/all-out-battle-luffy-vs-zoro-mysterious-grand-duel</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/10/episode-10</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/67/deliver-princess-vivi-the-luffy-pirates-set-sail</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/11/episode-11</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/68/try-hard-coby-coby-and-helmeppo-s-struggles-in-the-marines</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/12/episode-12</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/69/coby-and-helmeppo-s-resolve-vice-admiral-garp-s-parental-aff</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/13/episode-13</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/70/an-ancient-island-the-shadow-hiding-in-little-garden</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/14/episode-14</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/71/huge-duel-the-giants-dorry-and-broggy</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/15/episode-15</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/72/luffy-gets-angry-a-dirty-trick-violates-the-sacred-duel</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/16/episode-16</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/73/broggy-s-bitter-tears-of-victory-the-conclusion-of-elbaf</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/17/episode-17</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/74/the-devilish-candle-tears-of-regret-and-tears-of-anger</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/18/episode-18</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/75/a-hex-on-luffy-colors-trap</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/19/episode-19</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/76/time-to-fight-back-usopp-s-quick-thinking-and-fire-star</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/20/episode-20</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/2/episode/77/farewell-giant-island-head-for-alabasta</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/21/episode-21</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/78/nami-s-sick-beyond-the-snow-falling-on-the-sea</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/22/episode-22</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/79/a-raid-the-tin-tyrant-and-tin-plate-wapol</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/23/episode-23</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/80/an-island-without-doctors-adventure-in-a-nameless-land</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/24/episode-24</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/81/are-you-happy-the-doctor-called-witch</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/25/episode-25</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/82/dalton-s-resolve-wapol-s-corps-lands-on-the-island</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/26/episode-26</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/83/the-island-where-snow-lives-climb-the-drum-rockies</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/27/episode-27</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/84/blue-nosed-reindeer-chopper-s-secret</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/28/episode-28</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/85/an-outcast-s-dream-hiriluk-the-quack</loc>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/29/episode-29</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/30/episode-30</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/86/hiriluk-s-cherry-blossoms-and-the-will-that-gets-carried-on</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/1/revolt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/87/fight-wapol-s-crew-the-power-of-the-munch-munch-fruit</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/2/he</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/88/zoan-type-devil-fruit-chopper-s-seven-form-transformation</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/3/yah</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/89/when-the-kingdom-s-rule-ends-the-flag-of-faith-flies-forever</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/4/to-life</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/90/hiriluk-s-cherry-blossoms-miracle-in-the-drum-rockies</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/5/one-grand-passion</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/anime/37854-one-piece/season/3/episode/91/goodbye-drum-island-i-m-going-out-to-sea</loc>
+    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/6/ta-ta</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -4136,942 +4736,172 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/1/murthehelp</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/1/episode-1</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/2/jeong-jinman-jeong-jinman-jeong-jinman</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/2/episode-2</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/3/the-strong-don-t-howl</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/3/episode-3</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/4/the-shopping-mall</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/4/episode-4</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/5/babylon</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/5/episode-5</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/6/jeong-jinman</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/6/episode-6</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/7/trap</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/7/episode-7</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/1/episode/8/listen-up-jian</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/8/episode-8</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/1/jinman-that-same-day</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/9/episode-9</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/2/recluse</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/10/episode-10</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/3/past-is-past-present-is-present</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/11/episode-11</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/4/raid</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/12/episode-12</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/5/negotiation</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/13/episode-13</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/6/the-trojan-horse</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/14/episode-14</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/7/the-enemy-of-my-enemy</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/15/episode-15</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/215072-a-shop-for-killers/season/2/episode/8/listen-up-jinman</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/16/episode-16</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/17/episode-17</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/1/episode-1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/2/episode-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/3/episode-3</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/4/episode-4</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/5/episode-5</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/6/episode-6</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/7/episode-7</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/8/episode-8</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/9/episode-9</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/10/episode-10</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/11/episode-11</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/12/episode-12</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/13/episode-13</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/14/episode-14</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/15/episode-15</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/16/episode-16</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/17/episode-17</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/18/episode-18</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/19/episode-19</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/20/episode-20</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/21/episode-21</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/22/episode-22</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/23/episode-23</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/24/episode-24</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/25/episode-25</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/26/episode-26</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/27/episode-27</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/28/episode-28</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/29/episode-29</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/272938-pull-strings/season/1/episode/30/episode-30</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/1/to-me-my-x-men</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/2/mutant-liberation-begins</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/3/fire-made-flesh</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/4/motendo-lifedeath-1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/5/remember-it</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/6/lifedeath-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/7/bright-eyes</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/8/tolerance-is-extinction-1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/9/tolerance-is-extinction-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/1/episode/10/tolerance-is-extinction-3</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/1/days-of-past-future</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/2/a-force-to-be-reckoned-with</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/3/rise-of-apocalypse-1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/4/rise-of-apocalypse-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/5/weapon-x-lies-and-dvds</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/6/danger-exe</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/7/strange-land-savage-heart</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/8/the-dead-man-s-hand</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/138502-x-men-97/season/2/episode/9/survival-of-the-fittest</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/1/episode-1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/2/episode-2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/3/episode-3</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/4/episode-4</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/5/episode-5</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/6/episode-6</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/7/episode-7</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/8/episode-8</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/9/episode-9</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/10/episode-10</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/11/episode-11</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/12/episode-12</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/13/episode-13</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/14/episode-14</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/15/episode-15</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/16/episode-16</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/17/episode-17</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/18/episode-18</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/19/episode-19</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/20/episode-20</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/21/episode-21</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/22/episode-22</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/23/episode-23</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/24/episode-24</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/25/episode-25</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/26/episode-26</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/27/episode-27</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/28/episode-28</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/29/episode-29</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/271016-mystic-nine/season/1/episode/30/episode-30</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/1/space-pilot-3000</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/2/the-series-has-landed</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/3/i-roommate</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/4/love-s-labours-lost-in-space</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/5/fear-of-a-bot-planet</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/6/a-fishful-of-dollars</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/7/my-three-suns</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/8/a-big-piece-of-garbage</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/1/episode/9/hell-is-other-robots</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/1/a-flight-to-remember</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/2/mars-university</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/3/when-aliens-attack</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/4/fry-the-slurm-factory</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/5/i-second-that-emotion</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/6/brannigan-begin-again</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/7/a-head-in-the-polls</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/8/xmas-story</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/9/why-must-i-be-a-crustacean-in-love</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/10/put-your-head-on-my-shoulders</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/11/lesser-of-two-evils</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/12/raging-bender</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/13/a-bicyclops-built-for-two</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/14/how-hermes-requisitioned-his-groove-back</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/15/a-clone-of-my-own</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/16/the-deep-south</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/17/bender-gets-made</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/18/the-problem-with-popplers</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/19/mother-s-day</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/2/episode/20/anthology-of-interest-i</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/1/the-honking</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/2/war-is-the-h-word</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/3/the-cryonic-woman</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/4/parasites-lost</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/5/amazon-women-in-the-mood</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/6/bendless-love</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/7/the-day-the-earth-stood-stupid</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/8/that-s-lobstertainment</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/9/the-birdbot-of-ice-catraz</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/10/the-luck-of-the-fryrish</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/11/the-cyber-house-rules</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/12/insane-in-the-mainframe</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/13/bendin-in-the-wind</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/14/time-keeps-on-slippin</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/anime/615-futurama/season/3/episode/15/i-dated-a-robot</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/1/revolt</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/2/he</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/3/yah</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/4/to-life</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/5/one-grand-passion</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/309798-my-brilliant-career/season/1/episode/6/ta-ta</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/1/the-gorgon</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/2/my-life-had-stood-a-loaded-gun</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/3/memory-distortion</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/4/flash-flood</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/5/pick-a-sticker</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/6/they-make-a-noise-like-feathers</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/7/some-days-it-don-t-come-easy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/287238-furious/season/1/episode/8/some-days-it-don-t-come-easy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/1/but-i-just-took-an-ambien</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/2/she-s-giving-single-bi</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/3/my-lifelong-debilitating-wolf-phobia</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/4/take-me-to-the-cliffs</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/5/i-m-not-a-shots-girl-either</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/6/i-still-bleed-through-my-pants-all-the-time</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/7/maybe-it-s-mackerel</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/283297-sterling-point/season/1/episode/8/i-m-the-kid</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/1/mar-a</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/2/paola</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/3/norma</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/18/episode-18</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/4/alma</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/19/episode-19</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/5/ngeles</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/20/episode-20</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/6/laura</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/21/episode-21</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/7/dora</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/22/episode-22</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/8/rosa</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/23/episode-23</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/9/gabina</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/24/episode-24</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/1/episode/10/valentina</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/25/episode-25</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/1/mauricio</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/26/episode-26</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/2/filiberto</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/27/episode-27</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/3/quintanilla</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/28/episode-28</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/4/arizmendi</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/29/episode-29</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/5/lozano</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/30/episode-30</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/6/gilberto</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/31/episode-31</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/7/gerardo</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/32/episode-32</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zero-tv.pages.dev/tv/253983-women-in-blue/season/2/episode/8/goyo</loc>
+    <loc>https://zero-tv.pages.dev/tv/291856-forging-justice/season/1/episode/33/episode-33</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -5127,6 +4957,381 @@
   </url>
   <url>
     <loc>https://zero-tv.pages.dev/tv/287620-stuart-fails-to-save-the-universe/season/1/episode/10/spoiler-filmed-before-a-live-studio-audience</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/1/strange-new-worlds</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/2/children-of-the-comet</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/3/ghosts-of-illyria</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/4/memento-mori</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/5/spock-amok</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/6/lift-us-where-suffering-cannot-reach</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/7/the-serene-squall</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/8/the-elysian-kingdom</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/9/all-those-who-wander</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/1/episode/10/a-quality-of-mercy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/1/the-broken-circle</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/2/ad-astra-per-aspera</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/3/tomorrow-and-tomorrow-and-tomorrow</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/4/among-the-lotus-eaters</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/5/charades</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/6/lost-in-translation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/7/those-old-scientists</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/8/under-the-cloak-of-war</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/9/subspace-rhapsody</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/2/episode/10/hegemony-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/1/hegemony-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/2/wedding-bell-blues</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/3/shuttle-to-kenfori</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/4/a-space-adventure-hour</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/5/through-the-lens-of-time</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/6/the-sehlat-who-ate-its-tail</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/7/what-is-starfleet</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/8/four-and-a-half-vulcans</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/9/terrarium</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/103516-star-trek-strange-new-worlds/season/3/episode/10/new-life-and-new-civilizations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/1/pilot</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/2/don-t-you-want-me</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/3/help-me-rhonda</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/4/robert-s-party</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/5/murder-on-the-dancefloor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/6/homecoming-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/7/homecoming-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/8/hamlet</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/9/stairway-to-heaven</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/298168-the-shards/season/1/episode/10/episode-10</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/1/the-gang-gets-racist</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/2/charlie-wants-an-abortion</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/3/underage-drinking-a-national-concern</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/4/charlie-has-cancer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/5/gun-fever</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/6/the-gang-finds-a-dead-guy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/1/episode/7/charlie-got-molested</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/1/charlie-gets-crippled</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/2/the-gang-goes-jihad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/3/dennis-and-dee-go-on-welfare</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/4/mac-bangs-dennis-mom</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/5/hundred-dollar-baby</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/6/the-gang-gives-back</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/7/the-gang-exploits-a-miracle</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/8/the-gang-runs-for-office</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/9/charlie-goes-america-all-over-everybody-s-ass</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/2/episode/10/dennis-and-dee-get-a-new-dad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/1/the-gang-finds-a-dumpster-baby</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/2/the-gang-gets-invincible</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/3/dennis-and-dee-s-mom-is-dead</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/4/the-gang-gets-held-hostage</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/5/the-aluminum-monster-vs-fatty-magoo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/6/the-gang-solves-the-north-korea-situation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/7/the-gang-sells-out</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/8/frank-sets-sweet-dee-on-fire</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/9/sweet-dee-s-dating-a-retarded-person</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/10/mac-is-a-serial-killer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/11/dennis-looks-like-a-registered-sex-offender</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/12/the-gang-gets-whacked-1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/13/the-gang-gets-whacked-2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/14/bums-making-a-mess-all-over-the-city</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zero-tv.pages.dev/tv/2710-it-s-always-sunny-in-philadelphia/season/3/episode/15/the-gang-dances-their-asses-off</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
