@@ -10,20 +10,28 @@ const categories = [
   { key: 'upcoming', label: '🚀 Upcoming', fetcher: (p) => api.upcomingMovies(p) },
 ]
 
-const PAGE_BATCH = 4 // 4 pages = ~70-80 items
+const PAGE_BATCH = 4
 const TARGET_INITIAL = 70
+const STORAGE_KEY = 'zero-tv-movies-active'
+const SCROLL_KEY = 'zero-tv-scroll'
 
 export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, initialCategory, onSelect }) {
-  const [active, setActive] = useState(initialCategory || 'trending')
+  const [active, setActive] = useState(() => {
+    return localStorage.getItem(STORAGE_KEY) || initialCategory || 'trending'
+  })
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
-  const [nextPage, setNextPage] = useState(5) // next batch starts at 5
+  const [nextPage, setNextPage] = useState(5)
   const [hasMore, setHasMore] = useState(true)
 
   useEffect(() => {
     if (initialCategory) setActive(initialCategory)
   }, [initialCategory])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, active)
+  }, [active])
 
   useEffect(() => {
     async function load() {
@@ -37,11 +45,18 @@ export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, in
         const allResults = responses.flatMap(res => res.results || [])
         const uniqueMap = new Map()
         allResults.forEach(item => {
-          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, { ...item, type: 'movie' })
+          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'movie' })
         })
         const mapped = Array.from(uniqueMap.values()).slice(0, TARGET_INITIAL)
         setItems(mapped)
         if (mapped.length < TARGET_INITIAL) setHasMore(false)
+        const savedScroll = sessionStorage.getItem(SCROLL_KEY)
+        if (savedScroll) {
+          setTimeout(() => {
+            window.scrollTo(0, parseInt(savedScroll))
+            sessionStorage.removeItem(SCROLL_KEY)
+          }, 150)
+        }
       } catch (e) {
         console.error(e)
       } finally {
@@ -51,33 +66,36 @@ export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, in
     load()
   }, [active])
 
+  const handleSelect = (item) => {
+    sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString())
+    sessionStorage.setItem('zero-tv-last-path', window.location.pathname)
+    onSelect(item)
+  }
+
   async function handleLoadMore() {
-    if (loadingMore || !hasMore) return
+    if (loadingMore ||!hasMore) return
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
       const pagesToFetch = [nextPage, nextPage+1, nextPage+2, nextPage+3]
       const responses = await Promise.all(pagesToFetch.map(p => cat.fetcher(p)))
       const allResults = responses.flatMap(res => res.results || [])
-      
       if (allResults.length === 0) {
         setHasMore(false)
         return
       }
-
       const existingIds = new Set(items.map(i => i.id))
       const newUnique = []
       allResults.forEach(item => {
         if (!existingIds.has(item.id)) {
-          newUnique.push({ ...item, type: 'movie' })
+          newUnique.push({...item, type: 'movie' })
           existingIds.add(item.id)
         }
       })
-
       if (newUnique.length === 0) {
         setHasMore(false)
       } else {
-        setItems(prev => [...prev, ...newUnique].slice(0, prev.length + 70))
+        setItems(prev => [...prev,...newUnique].slice(0, prev.length + 70))
         setNextPage(prev => prev + PAGE_BATCH)
         if (newUnique.length < 60) setHasMore(false)
       }
@@ -100,7 +118,7 @@ export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, in
                 padding: '8px 14px',
                 borderRadius: '999px',
                 border: '1px solid rgba(255,255,255,.1)',
-                background: active === cat.key ? '#e50914' : 'rgba(255,255,255,.06)',
+                background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)',
                 color: '#fff',
                 fontSize: '12px',
                 fontWeight: 700,
@@ -112,10 +130,10 @@ export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, in
             </button>
           ))}
         </div>
-        <span style={{ color: '#6f7883', fontSize: '12px' }}>{items.length} movies {hasMore ? '+' : ''}</span>
+        <span style={{ color: '#6f7883', fontSize: '12px' }}>{items.length} movies {hasMore? '+' : ''}</span>
       </div>
 
-      <MediaGrid items={items} type="movie" loading={loading} onSelect={onSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
+      <MediaGrid items={items} type="movie" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
 
       {!loading && hasMore && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
@@ -127,15 +145,15 @@ export default function Movies({ watchlist, onWatchlistChange, isInWatchlist, in
               padding: '0 28px',
               borderRadius: '10px',
               border: '1px solid rgba(255,255,255,.12)',
-              background: loadingMore ? 'rgba(255,255,255,.06)' : '#e50914',
+              background: loadingMore? 'rgba(255,255,255,.06)' : '#e50914',
               color: '#fff',
               fontWeight: 800,
               fontSize: '13px',
-              cursor: loadingMore ? 'not-allowed' : 'pointer',
-              boxShadow: loadingMore ? 'none' : '0 6px 18px rgba(229,9,20,.3)',
+              cursor: loadingMore? 'not-allowed' : 'pointer',
+              boxShadow: loadingMore? 'none' : '0 6px 18px rgba(229,9,20,.3)',
             }}
           >
-            {loadingMore ? 'Loading...' : `Load More +70`}
+            {loadingMore? 'Loading...' : `Load More +70`}
           </button>
         </div>
       )}
