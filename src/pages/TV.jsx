@@ -11,14 +11,22 @@ const categories = [
 ]
 
 const PAGE_BATCH = 4
+const STORAGE_KEY = 'zero-tv-tv-active'
 
 export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSelect }) {
-  const [active, setActive] = useState('trending')
+  const [active, setActive] = useState(() => {
+    return localStorage.getItem(STORAGE_KEY) || 'trending'
+  })
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
   const [nextPage, setNextPage] = useState(5)
   const [hasMore, setHasMore] = useState(true)
+
+  // احفظ الفلتر
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, active)
+  }, [active])
 
   useEffect(() => {
     async function load() {
@@ -31,17 +39,30 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
         const allResults = responses.flatMap(r => r.results || [])
         const uniqueMap = new Map()
         allResults.forEach(item => {
-          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, { ...item, type: 'tv', isAnime: false })
+          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: false })
         })
         setItems(Array.from(uniqueMap.values()).slice(0, 70))
+        // رجع مكان الاسكرول
+        const savedScroll = sessionStorage.getItem('zero-tv-scroll')
+        if (savedScroll) {
+          setTimeout(() => window.scrollTo(0, parseInt(savedScroll)), 100)
+          sessionStorage.removeItem('zero-tv-scroll')
+        }
       } catch (e) { console.error(e) }
       finally { setLoading(false) }
     }
     load()
   }, [active])
 
+  const handleSelect = (item) => {
+    // احفظ مكانك قبل ما تفتح الفيلم
+    sessionStorage.setItem('zero-tv-scroll', window.scrollY.toString())
+    localStorage.setItem(STORAGE_KEY, active)
+    onSelect(item)
+  }
+
   async function handleLoadMore() {
-    if (loadingMore || !hasMore) return
+    if (loadingMore ||!hasMore) return
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
@@ -52,13 +73,13 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
       const newUnique = []
       allResults.forEach(item => {
         if (!existingIds.has(item.id)) {
-          newUnique.push({ ...item, type: 'tv', isAnime: false })
+          newUnique.push({...item, type: 'tv', isAnime: false })
           existingIds.add(item.id)
         }
       })
       if (newUnique.length === 0) setHasMore(false)
       else {
-        setItems(prev => [...prev, ...newUnique])
+        setItems(prev => [...prev,...newUnique])
         setNextPage(prev => prev + PAGE_BATCH)
       }
     } catch (e) { console.error(e) }
@@ -69,19 +90,8 @@ export default function TV({ watchlist, onWatchlistChange, isInWatchlist, onSele
     <div style={{ paddingTop: '10px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ margin: '0 0 6px', fontSize: '28px', color: '#fff' }}>📺 TV Shows</h1>
-        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} shows {hasMore ? '+' : ''}</p>
+        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} shows {hasMore? '+' : ''}</p>
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
-          <button key={cat.key} onClick={() => setActive(cat.key)} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key ? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>{cat.label}</button>
-        ))}
-      </div>
-      <MediaGrid items={items} type="tv" loading={loading} onSelect={onSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
-      {!loading && hasMore && (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
-          <button onClick={handleLoadMore} disabled={loadingMore} style={{ minHeight: '44px', padding: '0 28px', borderRadius: '10px', border: '1px solid rgba(255,255,255,.12)', background: loadingMore ? 'rgba(255,255,255,.06)' : '#e50914', color: '#fff', fontWeight: 800, fontSize: '13px', cursor: loadingMore ? 'not-allowed' : 'pointer' }}>{loadingMore ? 'Loading...' : 'Load More +70'}</button>
-        </div>
-      )}
-    </div>
-  )
-}
+          <button key={cat.key} onClick={() => setActive(cat.key)} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff
