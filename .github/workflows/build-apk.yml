@@ -13,23 +13,20 @@ jobs:
       - uses: actions/setup-java@v5
         with: { distribution: 'temurin', java-version: '17' }
       - uses: android-actions/setup-android@v3
-
       - name: Build Website
         run: |
           npm install
           npm run build
-
-      - name: Create Android Project Fixed
+      - name: Create Android Project
         run: |
           rm -rf android
           mkdir -p android/app/src/main/assets/public
           mkdir -p android/app/src/main/java/com/zerotv/app
           cp -r dist/* android/app/src/main/assets/public/
-          
+          echo "android.useAndroidX=true" > android/gradle.properties
           cat > android/settings.gradle << 'SETTINGS'
           include ':app'
           SETTINGS
-          
           cat > android/build.gradle << 'GRADLE'
           buildscript {
               repositories { google(); mavenCentral() }
@@ -37,7 +34,6 @@ jobs:
           }
           allprojects { repositories { google(); mavenCentral() } }
           GRADLE
-          
           cat > android/app/build.gradle << 'APP'
           plugins { id 'com.android.application' }
           android {
@@ -47,21 +43,16 @@ jobs:
                   applicationId "com.zerotv.app"
                   minSdk 22
                   targetSdk 34
-                  versionCode 2
-                  versionName "1.1"
+                  versionCode 3
+                  versionName "1.2"
               }
           }
-          dependencies {
-              implementation 'androidx.appcompat:appcompat:1.6.1'
-          }
           APP
-          
           cat > android/app/src/main/AndroidManifest.xml << 'MANIFEST'
           <?xml version="1.0" encoding="utf-8"?>
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
-              <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-              <application android:allowBackup="true" android:label="Zero TV" android:usesCleartextTraffic="true" android:theme="@android:style/Theme.NoTitleBar">
+              <application android:allowBackup="true" android:label="Zero TV" android:theme="@android:style/Theme.NoTitleBar">
                   <activity android:name=".MainActivity" android:exported="true">
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
@@ -71,14 +62,13 @@ jobs:
               </application>
           </manifest>
           MANIFEST
-          
           cat > android/app/src/main/java/com/zerotv/app/MainActivity.kt << 'KOTLIN'
           package com.zerotv.app
+          import android.app.Activity
           import android.os.Bundle
           import android.webkit.WebView
           import android.webkit.WebViewClient
-          import androidx.appcompat.app.AppCompatActivity
-          class MainActivity : AppCompatActivity() {
+          class MainActivity : Activity() {
               override fun onCreate(savedInstanceState: Bundle?) {
                   super.onCreate(savedInstanceState)
                   val webView = WebView(this)
@@ -93,14 +83,12 @@ jobs:
               }
           }
           KOTLIN
-
       - name: Build APK
         run: |
           cd android
           gradle wrapper
           chmod +x gradlew
           ./gradlew assembleDebug
-
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
