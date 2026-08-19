@@ -26,7 +26,11 @@ feed.addItem({
 
 if (!fs.existsSync('public')) fs.mkdirSync('public');
 
-fs.writeFileSync('public/feed.xml', feed.rss2());
+const rss = feed.rss2();
+
+fs.writeFileSync('public/feed.xml', rss);
+fs.writeFileSync('public/rss.xml', rss); // ده اللي انت عايزه
+fs.writeFileSync('public/rss', rss);
 fs.writeFileSync('public/feed.json', feed.json1());
 
-console.log('✅ Feed generated!');
+console.log('✅ Feed generated: feed.xml, rss.xml, rss');
