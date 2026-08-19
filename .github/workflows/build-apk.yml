@@ -20,31 +20,27 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
           
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         
       - name: Install dependencies
-        run: |
-          npm install
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-          
-      - name: Init Capacitor
-        run: |
-          npx cap init "Zero TV" "com.zerotv.app" --web-dir=dist || true
-          npx cap add android || true
-          
-      - name: Build Web App
+        run: npm install
+        
+      - name: Build Web + Android
         run: |
           npm run build
+          rm -rf android
+          npx cap add android
+          npx cap sync android
           npx cap copy android
           
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
           
       - name: Upload APK
         uses: actions/upload-artifact@v4

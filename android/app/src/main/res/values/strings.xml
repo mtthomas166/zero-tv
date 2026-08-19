@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Zero TV</string>
-    <string name="title_activity_main">Zero TV</string>
-    <string name="package_name">com.zerotv.app</string>
-    <string name="custom_url_scheme">com.zerotv.app</string>
-</resources>
