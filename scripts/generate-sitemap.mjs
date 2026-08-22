@@ -83,8 +83,6 @@ function dedup(items) {
 
 async function main() {
   const urls = [];
-
-  // Static pages
   urls.push({ loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'daily' });
   urls.push({ loc: `${SITE_URL}/movies`, priority: '0.9', changefreq: 'daily' });
   urls.push({ loc: `${SITE_URL}/tv`, priority: '0.9', changefreq: 'daily' });
@@ -98,15 +96,12 @@ async function main() {
   const tvShows = dedup(await getTVShows());
   console.log(`TV shows found: ${tvShows.length}`);
 
-  // Movie URLs
   for (const item of movies) {
     const slug = slugify(item.title);
     const path = `/movie/${item.id}${slug ? `-${slug}` : ''}`;
     urls.push({ loc: `${SITE_URL}${path}`, priority: '0.9', changefreq: 'weekly' });
   }
 
-  // For TV shows - main pages + episodes
-  // Limit to 50 shows to keep build fast (you can increase to 100)
   const tvToProcess = tvShows.slice(0, 50);
   let episodeCount = 0;
 
@@ -119,13 +114,9 @@ async function main() {
       const isAnime = details.genres?.some(g => g.name === 'Animation') || details.origin_country?.includes('JP');
       const baseType = isAnime ? 'anime' : 'tv';
       const basePath = `/${baseType}/${show.id}${showSlug ? `-${showSlug}` : ''}`;
-
-      // Main show page
       urls.push({ loc: `${SITE_URL}${basePath}`, priority: '0.9', changefreq: 'weekly' });
 
-      // Episodes - limit to first 3 seasons to avoid too many requests
       const seasons = (details.seasons || []).filter(s => s.season_number > 0).slice(0, 3);
-
       for (const season of seasons) {
         try {
           const seasonData = await fetchTMDB(`/tv/${show.id}/season/${season.season_number}`);
@@ -137,12 +128,9 @@ async function main() {
             episodeCount++;
           }
           await sleep(100);
-        } catch (e) {
-          console.warn(`Failed season ${season.season_number} for ${show.id}`);
-        }
+        } catch {}
       }
-
-      console.log(`[${i+1}/${tvToProcess.length}] ${showTitle} - ${seasons.length} seasons processed, total episodes so far: ${episodeCount}`);
+      console.log(`[${i+1}/${tvToProcess.length}] ${showTitle} - total episodes so far: ${episodeCount}`);
       await sleep(150);
     } catch (e) {
       console.warn(`Failed show ${show.id}: ${e.message}`);
@@ -155,15 +143,17 @@ async function main() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
-    <loc>${u.loc}</loc>
+    <loc>${u.loc.replace(/&/g, '&amp;')}</loc>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n')}
 </urlset>`;
 
   fs.mkdirSync('public', { recursive: true });
+  fs.mkdirSync('dist', { recursive: true });
   fs.writeFileSync('public/sitemap.xml', xml, 'utf8');
-  console.log(`✅ Sitemap generated with ${urls.length} urls (${movies.length} movies, ${tvToProcess.length} shows, ${episodeCount} episodes)`);
+  fs.writeFileSync('dist/sitemap.xml', xml, 'utf8');
+  console.log(`✅ Sitemap generated with ${urls.length} urls`);
 }
 
 main().catch(e => {
