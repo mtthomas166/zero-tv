@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-"build": "vite build && node scripts/generate-sitemap.mjs && node scripts/generate-feed.js"
-    "preview": "vite preview"
+"build": "vite build && node scripts/generate-sitemap.mjs && node scripts/generate-feed.js",
+"preview": "vite preview"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.0",
