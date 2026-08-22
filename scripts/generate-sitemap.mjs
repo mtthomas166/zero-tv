@@ -60,7 +60,7 @@ async function getTVShows() {
     try {
       const data = await fetchTMDB(path);
       data.results?.slice(0, 20).forEach(item => {
-        if (item.id && item.name) items.push({ id: item.id, title: item.name, type: 'tv', isAnimeHint: path.includes('16') });
+        if (item.id && item.name) items.push({ id: item.id, title: item.name, type: 'tv' });
       });
     } catch {}
     await sleep(150);
@@ -88,13 +88,8 @@ async function main() {
   urls.push({ loc: `${SITE_URL}/tv`, priority: '0.9', changefreq: 'daily' });
   urls.push({ loc: `${SITE_URL}/anime`, priority: '0.9', changefreq: 'daily' });
 
-  console.log('Fetching movies...');
   const movies = dedup(await getMovies());
-  console.log(`Movies found: ${movies.length}`);
-
-  console.log('Fetching TV shows...');
   const tvShows = dedup(await getTVShows());
-  console.log(`TV shows found: ${tvShows.length}`);
 
   for (const item of movies) {
     const slug = slugify(item.title);
@@ -103,10 +98,7 @@ async function main() {
   }
 
   const tvToProcess = tvShows.slice(0, 50);
-  let episodeCount = 0;
-
-  for (let i = 0; i < tvToProcess.length; i++) {
-    const show = tvToProcess[i];
+  for (const show of tvToProcess) {
     try {
       const details = await fetchTMDB(`/tv/${show.id}`);
       const showTitle = details.name || show.title;
@@ -120,25 +112,17 @@ async function main() {
       for (const season of seasons) {
         try {
           const seasonData = await fetchTMDB(`/tv/${show.id}/season/${season.season_number}`);
-          const episodes = seasonData.episodes || [];
-          for (const ep of episodes) {
+          for (const ep of seasonData.episodes || []) {
             const epSlug = slugify(ep.name || `episode-${ep.episode_number}`);
             const epPath = `${basePath}/season/${season.season_number}/episode/${ep.episode_number}${epSlug ? `/${epSlug}` : ''}`;
             urls.push({ loc: `${SITE_URL}${epPath}`, priority: '0.7', changefreq: 'weekly' });
-            episodeCount++;
           }
           await sleep(100);
         } catch {}
       }
-      console.log(`[${i+1}/${tvToProcess.length}] ${showTitle} - total episodes so far: ${episodeCount}`);
       await sleep(150);
-    } catch (e) {
-      console.warn(`Failed show ${show.id}: ${e.message}`);
-    }
+    } catch {}
   }
-
-  console.log(`Total episode URLs: ${episodeCount}`);
-  console.log(`Total URLs: ${urls.length}`);
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
