@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.mjs && node scripts/generate-feed.js && vite build",
+"build": "vite build && node scripts/generate-sitemap.mjs && node scripts/generate-feed.js"
     "preview": "vite preview"
   },
   "dependencies": {
