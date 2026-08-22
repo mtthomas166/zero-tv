@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-"build": "vite build && node scripts/generate-sitemap.mjs && node scripts/generate-feed.js",
-"preview": "vite preview"
+    "build": "node scripts/generate-sitemap.mjs && vite build && node scripts/generate-feed.js",
+    "preview": "vite preview",
+    "postbuild": "node scripts/indexnow.js || echo 'IndexNow skip'"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.0",
@@ -20,9 +21,4 @@
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.2"
   }
-"scripts": {
-  "dev": "vite",
-  "build": "node scripts/generate-sitemap.mjs && vite build && node scripts/generate-feed.js",
-  "preview": "vite preview",
-  "postbuild": "node scripts/indexnow.js"
 }
