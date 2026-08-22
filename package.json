@@ -20,8 +20,9 @@
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.2"
   }
-}
 "scripts": {
-  "build": "node scripts/generate-sitemap.mjs && vite build",
+  "dev": "vite",
+  "build": "node scripts/generate-sitemap.mjs && vite build && node scripts/generate-feed.js",
+  "preview": "vite preview",
   "postbuild": "node scripts/indexnow.js"
 }
