@@ -11,27 +11,78 @@ async function fetchTMDB(p){
 }
 function slugify(t){ return t ? t.toString().toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').substring(0,60) : ''; }
 function escapeXml(s){ return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;') : ''; }
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
 
 async function main(){
-  const data = await fetchTMDB('/trending/movie/week?page=1');
-  const movies = data.results?.slice(0,20) || [];
+  const [moviesData, tvData] = await Promise.all([
+    fetchTMDB('/trending/movie/week?page=1'),
+    fetchTMDB('/trending/tv/week?page=1')
+  ]);
+  
+  const items = [];
+  
+  // 1. افلام - 10
+  for(const m of (moviesData.results || []).slice(0,10)){
+    items.push({
+      title: m.title,
+      url: `${SITE_URL}/movie/${m.id}-${slugify(m.title)}`,
+      overview: m.overview,
+      poster: m.poster_path ? `${TMDB_IMG}${m.poster_path}` : '',
+      date: m.release_date,
+      label: `Movie`
+    });
+  }
+  
+  // 2. مسلسلات وانمي - كل واحد مع اخر حلقة نزلت
+  for(const tv of (tvData.results || []).slice(0,6)){
+    try{
+      const details = await fetchTMDB(`/tv/${tv.id}`);
+      const isAnime = details.genres?.some(g=>g.name==='Animation') || details.origin_country?.includes('JP');
+      const typeLabel = isAnime ? 'Anime' : 'TV Show';
+      const slug = slugify(details.name || tv.name);
+      
+      // اضافة المسلسل نفسه
+      items.push({
+        title: details.name || tv.name,
+        url: `${SITE_URL}/${isAnime ? 'anime' : 'tv'}/${tv.id}-${slug}`,
+        overview: details.overview || tv.overview,
+        poster: tv.poster_path ? `${TMDB_IMG}${tv.poster_path}` : '',
+        date: details.first_air_date,
+        label: typeLabel
+      });
+      
+      // اضافة اخر حلقة نزلت منه
+      const lastEp = details.last_episode_to_air;
+      if(lastEp){
+        const epSlug = slugify(lastEp.name || `episode-${lastEp.episode_number}`);
+        items.push({
+          title: `${details.name} - S${lastEp.season_number}E${lastEp.episode_number} ${lastEp.name || ''}`.trim(),
+          url: `${SITE_URL}/${isAnime ? 'anime' : 'tv'}/${tv.id}-${slug}/season/${lastEp.season_number}/episode/${lastEp.episode_number}${epSlug ? '/'+epSlug : ''}`,
+          overview: lastEp.overview || `Watch ${details.name} Episode ${lastEp.episode_number}`,
+          poster: lastEp.still_path ? `${TMDB_IMG}${lastEp.still_path}` : (tv.poster_path ? `${TMDB_IMG}${tv.poster_path}` : ''),
+          date: lastEp.air_date,
+          label: `${typeLabel} Episode`
+        });
+      }
+      await sleep(200);
+    }catch(e){}
+  }
+  
+  // ترتيب عشوائي واخد 20
+  const finalItems = items.sort(()=>Math.random()-0.5).slice(0,20);
   const now = new Date().toUTCString();
   
-  const items = movies.map(m => {
-    const slug = slugify(m.title);
-    const url = `${SITE_URL}/movie/${m.id}${slug?`-${slug}`:''}`;
-    const pubDate = m.release_date ? new Date(m.release_date).toUTCString() : now;
-    const overview = escapeXml(m.overview || `Watch ${m.title} on Zero TV`);
-    const poster = m.poster_path ? `${TMDB_IMG}${m.poster_path}` : '';
-    const imgTag = poster ? `<enclosure url="${poster}" type="image/jpeg" length="0" />
-    <media:content url="${poster}" medium="image" />
-    <media:thumbnail url="${poster}" />` : '';
+  const xmlItems = finalItems.map(m => {
+    const pubDate = m.date ? new Date(m.date).toUTCString() : now;
+    const imgTag = m.poster ? `<enclosure url="${m.poster}" type="image/jpeg" length="0" />
+    <media:content url="${m.poster}" medium="image" />
+    <media:thumbnail url="${m.poster}" />` : '';
     return `  <item>
-    <title><![CDATA[${m.title}]]></title>
-    <link>${url}</link>
-    <guid isPermaLink="true">${url}</guid>
+    <title><![CDATA[${m.title} [${m.label}]]]></title>
+    <link>${m.url}</link>
+    <guid isPermaLink="true">${m.url}</guid>
     <pubDate>${pubDate}</pubDate>
-    <description><![CDATA[<img src="${poster}" /><br/>${m.overview || ''}]]></description>
+    <description><![CDATA[<img src="${m.poster}" /><br/>${escapeXml(m.overview || '')}]]></description>
     ${imgTag}
   </item>`;
   }).join('\n');
@@ -41,11 +92,11 @@ async function main(){
 <channel>
   <title>Zero TV</title>
   <link>${SITE_URL}</link>
-  <description>Zero TV - Watch Latest Movies and TV Shows for Free</description>
+  <description>Zero TV - Latest Movies, TV Shows, Anime and Episodes</description>
   <lastBuildDate>${now}</lastBuildDate>
   <language>ar</language>
-  <generator>Zero TV</generator>
-${items}
+  <generator>Zero TV - Full Content Feed</generator>
+${xmlItems}
 </channel>
 </rss>`;
 
@@ -55,6 +106,7 @@ ${items}
   fs.writeFileSync('dist/rss.xml', rss);
   fs.writeFileSync('public/feed.xml', rss);
   fs.writeFileSync('public/rss.xml', rss);
-  console.log(`✅ feed.xml with IMAGES generated - ${movies.length} movies`);
+  console.log(`✅ FULL FEED - ${finalItems.length} items (Movies + TV + Anime + Episodes)`);
+  finalItems.forEach(i=>console.log(` - ${i.label}: ${i.title}`));
 }
 main();
