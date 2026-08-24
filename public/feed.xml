@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
-    <channel>
-        <title>Zero TV</title>
-        <link>https://mtthomas166.github.io/zero-tv</link>
-        <description>Zero TV - Watch Live TV</description>
-        <lastBuildDate>Sat, 22 Aug 2026 12:20:23 GMT</lastBuildDate>
-        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-        <generator>https://github.com/jpmonette/feed</generator>
-        <language>ar</language>
-        <copyright>All rights reserved 2026</copyright>
-        <item>
-            <title><![CDATA[Zero TV - Live]]></title>
-            <link>https://mtthomas166.github.io/zero-tv</link>
-            <guid isPermaLink="false">https://mtthomas166.github.io/zero-tv</guid>
-            <pubDate>Sat, 22 Aug 2026 12:20:23 GMT</pubDate>
-            <description><![CDATA[Watch live TV on Zero TV]]></description>
-        </item>
-    </channel>
+<channel>
+  <title>Zero TV</title>
+  <link>https://zero-tv.pages.dev</link>
+  <description>Zero TV - Watch Latest Movies and TV Shows for Free</description>
+  <lastBuildDate>Sat, 22 Aug 2026 12:20:23 GMT</lastBuildDate>
+  <language>ar</language>
+  <generator>Zero TV</generator>
+  <copyright>All rights reserved 2026</copyright>
+  <item>
+    <title><![CDATA[Zero TV - Live]]></title>
+    <link>https://zero-tv.pages.dev</link>
+    <guid isPermaLink="true">https://zero-tv.pages.dev</guid>
+    <pubDate>Sat, 22 Aug 2026 12:20:23 GMT</pubDate>
+    <description><![CDATA[Watch live TV and latest movies on Zero TV]]></description>
+  </item>
+</channel>
 </rss>
