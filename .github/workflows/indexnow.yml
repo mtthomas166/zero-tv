@@ -1,19 +1,21 @@
 name: IndexNow
-
 on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
   push:
-    branches: [main]
-
+    paths:
+      - 'public/sitemap.xml'
 jobs:
   indexnow:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Submit to IndexNow
-        uses: bojieyang/indexnow-action@v2
+      - uses: actions/checkout@v3
+      - name: Submit last 1 day only
+        uses: bojieyang/indexnow-action@v3
         with:
           sitemap-location: https://zero-tv.pages.dev/sitemap.xml
-          key: 5468bcf493cc45ad840c9598df986663
-          key-location: https://zero-tv.pages.dev/5468bcf493cc45ad840c9598df986663.txt
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: https://zero-tv.pages.dev/${{ secrets.INDEXNOW_KEY }}.txt
+          since: 1
+          since-unit: day
