@@ -14,17 +14,14 @@ export function posterUrl(path) {
   if (!path) return "/placeholder.jpg";
   return IMG_BASE + "/w500" + path;
 }
-
 export function backdropUrl(path) {
   if (!path) return "";
   return IMG_BASE + "/original" + path;
 }
-
 export function getYear(date) {
   if (!date) return "";
   return date.slice(0, 4);
 }
-
 export function formatRating(rating) {
   if (!rating) return "N/A";
   return rating.toFixed(1);
@@ -44,10 +41,13 @@ export const api = {
   animeTrending: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   trendingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   popularAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
+  animePopular: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   topRatedAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
   animeTopRated: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
   movieDetails: function(id) { return tmdbFetch("/movie/" + id + "?append_to_response=credits,videos,similar,images"); },
   tvDetails: function(id) { return tmdbFetch("/tv/" + id + "?append_to_response=credits,videos,similar,images"); },
+  seasonDetails: function(tvId, seasonNumber) { return tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber); },
+  episodeDetails: function(tvId, seasonNumber, episodeNumber) { return tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber + "/episode/" + episodeNumber); },
   searchMulti: function(q) { return tmdbFetch("/search/multi?query=" + encodeURIComponent(q)); }
 };
 
