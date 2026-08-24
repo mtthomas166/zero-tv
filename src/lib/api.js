@@ -1,5 +1,7 @@
 const TMDB_KEY = import.meta.env.VITE_TMDB_KEY || "af32459863d504e3a5d04f317e7f12e1";
 const BASE = "https://api.themoviedb.org/3";
+const IMG_BASE = "https://image.tmdb.org/t/p";
+
 async function tmdbFetch(path) {
   const sep = path.includes("?") ? "&" : "?";
   const url = BASE + path + sep + "api_key=" + TMDB_KEY + "&language=en-US";
@@ -7,6 +9,27 @@ async function tmdbFetch(path) {
   if (!res.ok) throw new Error("TMDB " + res.status);
   return res.json();
 }
+
+export function posterUrl(path) {
+  if (!path) return "/placeholder.jpg";
+  return IMG_BASE + "/w500" + path;
+}
+
+export function backdropUrl(path) {
+  if (!path) return "";
+  return IMG_BASE + "/original" + path;
+}
+
+export function getYear(date) {
+  if (!date) return "";
+  return date.slice(0, 4);
+}
+
+export function formatRating(rating) {
+  if (!rating) return "N/A";
+  return rating.toFixed(1);
+}
+
 export const api = {
   trendingMovies: function() { return tmdbFetch("/trending/movie/day"); },
   popularMovies: function() { return tmdbFetch("/movie/popular"); },
@@ -27,7 +50,9 @@ export const api = {
   tvDetails: function(id) { return tmdbFetch("/tv/" + id + "?append_to_response=credits,videos,similar,images"); },
   searchMulti: function(q) { return tmdbFetch("/search/multi?query=" + encodeURIComponent(q)); }
 };
+
 export default api;
+
 export function buildUniqueContent(movie) {
   if (!movie) return null;
   var title = movie.title || movie.name || "";
