@@ -6,7 +6,7 @@ import TV from './pages/TV.jsx'
 import Anime from './pages/Anime.jsx'
 import MediaGrid from './components/MediaGrid.jsx'
 import Player from './components/Player.jsx'
-import { api, posterUrl, formatRating, getYear } from './lib/api.js'
+import { api, posterUrl, formatRating, getYear, buildUniqueContent } from './lib/api.js'
 import styles from './App.module.css'
 
 function slugify(text) {
@@ -76,13 +76,11 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Smart Back Function - ده الحل
   const handleBack = () => {
     const lastPath = sessionStorage.getItem('zero-tv-last-path') || location.state?.from
     if (lastPath) {
       navigate(lastPath)
     } else {
-      // fallback ذكي حسب النوع
       if (type === 'movie') navigate('/movies')
       else if (type === 'tv') navigate('/tv')
       else if (type === 'anime') navigate('/anime')
@@ -143,19 +141,18 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
     load()
   }, [id])
 
-  //... باقي الـ useEffects بتاعتك زي ما هي (SEO)...
-
   useEffect(() => {
     if (!details) return
-    const isMovie = type === 'movie' ||!!details.title
+    const isMovie = type === 'movie' || !!details.title
     const title = isMovie? details.title : details.name
     const year = getYear(isMovie? details.release_date : details.first_air_date)
     const overview = details.overview || `Watch ${title} online in HD on Zero TV`
-    const shortDesc = overview.slice(0, 155)
+    const unique = buildUniqueContent(details)
+    const shortDesc = unique ? unique.metaDescription : overview.slice(0, 155)
     const poster = posterUrl(details.poster_path, true)
     const backdrop = details.backdrop_path? `https://image.tmdb.org/t/p/w1280${details.backdrop_path}` : poster
     const slug = slugify(title)
-    const isEpisodeView =!isMovie && isPlaying
+    const isEpisodeView = !isMovie && isPlaying
     const epSlugForUrl = seasonDetails?.episodes?.find(e => e.episode_number === episodeNum)?.name? slugify(seasonDetails.episodes.find(e => e.episode_number === episodeNum).name) : ''
     const canonicalUrl = isEpisodeView
      ? `https://zero-tv.pages.dev/${type}/${id}/${slug}/season/${seasonNum}/episode/${episodeNum}${epSlugForUrl? '/' + epSlugForUrl : ''}`
@@ -231,7 +228,7 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   if (loading) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>Loading...</div>
   if (!details) return <div style={{ padding: '100px', textAlign: 'center', color: '#fff' }}>Content not found</div>
 
-  const isMovie = type === 'movie' ||!!details.title
+  const isMovie = type === 'movie' || !!details.title
   const title = isMovie? details.title : details.name
   const originalTitle = isMovie? details.original_title : details.original_name
   const date = isMovie? details.release_date : details.first_air_date
@@ -243,14 +240,14 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
   const backdropUrl = backdrop? `https://image.tmdb.org/t/p/w1280${backdrop}` : null
   const genres = Array.isArray(details.genres)? details.genres : []
   const cast = Array.isArray(details?.credits?.cast)? details.credits.cast.slice(0, 12) : []
-  const seasons =!isMovie && Array.isArray(details.seasons)? details.seasons.filter(s => s.season_number >= 0) : []
+  const seasons = !isMovie && Array.isArray(details.seasons)? details.seasons.filter(s => s.season_number >= 0) : []
   const watchlistType = type === 'anime'? 'anime' : isMovie? 'movie' : 'tv'
   const saved = isInWatchlist({ id: details.id }, watchlistType)
+  const uniqueContent = buildUniqueContent(details)
 
   return (
     <div style={{ margin: '-20px -20px 0 -20px' }}>
       <div style={{ height: '420px', background: backdropUrl? `linear-gradient(180deg, rgba(11,14,18,.2), rgba(11,14,18,.8), #0b0e12), url("${backdropUrl}")` : `linear-gradient(135deg, #151922, #090b0f)`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-        {/* التعديل هنا */}
         <button onClick={handleBack} style={{ position: 'absolute', top: '20px', left: '20px', padding: '8px 14px', borderRadius: '8px', background: 'rgba(0,0,0,.6)', color: '#fff', border: '1px solid rgba(255,255,255,.2)', cursor:'pointer' }}>Back</button>
       </div>
       <div style={{ padding: '0 28px 30px', marginTop: '-120px', position: 'relative', display: 'flex', gap: '26px', flexWrap: 'wrap' }}>
@@ -266,6 +263,14 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
             {genres.map(g => <span key={g.id} style={{ background: '#1e242e', border: '1px solid #2a323f', padding: '4px 8px', borderRadius: '6px', color: '#cbd5df' }}>{g.name}</span>)}
           </div>
           <p style={{ color: '#cbd5df', lineHeight: 1.7, maxWidth: '800px' }}>{overview}</p>
+          
+          {/* === UNIQUE SEO CONTENT - WATCH REASON === */}
+          {uniqueContent && (
+            <div style={{ marginTop: '18px', padding: '14px', background: 'rgba(229,9,20,0.08)', border: '1px solid rgba(229,9,20,0.2)', borderRadius: '10px', maxWidth: '800px' }}>
+              <p style={{ color: '#ffb3b8', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>{uniqueContent.whyWatch}</p>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: '12px', marginTop: '18px' }}>
             <button onClick={() => setIsPlaying(v =>!v)} style={{ padding: '10px 18px', borderRadius: '10px', border: 'none', background: '#e50914', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>{isPlaying? 'Stop' : 'Watch'}</button>
             <button onClick={() => onWatchlistChange(details, watchlistType)} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #2a323f', background: saved? '#1e242e' : 'transparent', color: '#fff', cursor: 'pointer' }}>{saved? 'In Watchlist' : 'Add to Watchlist'}</button>
@@ -312,6 +317,26 @@ function DetailsPage({ watchlist, onWatchlistChange, isInWatchlist }) {
           </div>
         </div>
       )}
+
+      {/* === UNIQUE SEO CONTENT - FULL SECTION (HERE IS WHERE YOU ASKED) === */}
+      {uniqueContent && (
+        <div style={{ padding: '0 28px 30px' }}>
+          <div style={{ marginTop: '32px', padding: '22px', background: 'rgba(255,255,255,0.03)', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <h2 style={{ fontSize: '22px', marginBottom: '14px', color: '#fff' }}>About {uniqueContent.title} {uniqueContent.year ? `(${uniqueContent.year})` : ""}</h2>
+            <p style={{ color: '#b8c0cc', lineHeight: '1.8', whiteSpace: 'pre-wrap', fontSize: '14.5px' }}>{uniqueContent.longDesc}</p>
+
+            <h3 style={{ fontSize: '16px', margin: '24px 0 12px', color: '#fff' }}>Frequently Asked Questions</h3>
+            <div style={{ display: 'grid', gap: '12px' }}>
+              {uniqueContent.faqs.map((f, i) => (
+                <div key={i} style={{ padding: '14px', background: 'rgba(0,0,0,0.25)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.04)' }}>
+                  <strong style={{ color: '#e5e9f0', fontSize: '14px' }}>{f.q}</strong>
+                  <p style={{ color: '#8a96a6', margin: '8px 0 0', fontSize: '13px', lineHeight: '1.6' }}>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -329,8 +354,11 @@ function SearchPage({ watchlist, onWatchlistChange, isInWatchlist }) {
       if (!q) return
       setLoading(true)
       try {
-        const [movies, tv] = await Promise.all([api.searchMovies(q), api.searchTV(q)])
-        const combined = [...(movies.results || []),...(tv.results || [])].map(r => ({...r, type: r.title? 'movie' : 'tv', isAnime: r.genre_ids?.includes(16) }))
+        const data = await api.searchMulti(q)
+        const combined = (data.results || []).map(r => {
+          const isMovie = !!r.title
+          return {...r, type: isMovie? 'movie' : 'tv', isAnime: r.genre_ids?.includes(16) }
+        })
         setResults(combined)
       } catch {} finally { setLoading(false) }
     }
