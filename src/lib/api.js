@@ -14,7 +14,6 @@ function animeDiscovery(sort) {
 }
 
 const baseApi = {
-  // Movies
   trendingMovies: () => tmdbFetch('/trending/movie/day'),
   popularMovies: () => tmdbFetch('/movie/popular'),
   topRatedMovies: () => tmdbFetch('/movie/top_rated'),
@@ -22,8 +21,6 @@ const baseApi = {
   upcomingMovies: () => tmdbFetch('/movie/upcoming'),
   nowPlaying: () => tmdbFetch('/movie/now_playing'),
   upcoming: () => tmdbFetch('/movie/upcoming'),
-
-  // TV Shows
   trendingTV: () => tmdbFetch('/trending/tv/day'),
   popularTV: () => tmdbFetch('/tv/popular'),
   topRatedTV: () => tmdbFetch('/tv/top_rated'),
@@ -31,8 +28,6 @@ const baseApi = {
   onTheAirTV: () => tmdbFetch('/tv/on_the_air'),
   onTheAir: () => tmdbFetch('/tv/on_the_air'),
   airingToday: () => tmdbFetch('/tv/airing_today'),
-
-  // Anime
   animeTrending: () => tmdbFetch(animeDiscovery('popularity.desc')),
   trendingAnime: () => tmdbFetch(animeDiscovery('popularity.desc')),
   popularAnime: () => tmdbFetch('/discover/tv?with_genres=16&sort_by=popularity.desc'),
@@ -41,19 +36,14 @@ const baseApi = {
   animePopular: () => tmdbFetch('/discover/tv?with_genres=16&sort_by=popularity.desc'),
   airingNowAnime: () => tmdbFetch(animeDiscovery('popularity.desc')),
   upcomingAnime: () => tmdbFetch(animeDiscovery('popularity.desc')),
-
-  // Details - used by Player.jsx
   movieDetails: (id) => tmdbFetch(`/movie/${id}?append_to_response=credits,videos,similar,images`),
   tvDetails: (id) => tmdbFetch(`/tv/${id}?append_to_response=credits,videos,similar,images`),
-  
   searchMulti: (q) => tmdbFetch(`/search/multi?query=${encodeURIComponent(q)}`),
 };
 
-// Proxy عشان لو فيه دالة ناقصة ميوقعش الموقع تاني
 export const api = new Proxy(baseApi, {
   get(target, prop) {
     if (prop in target) return target[prop];
-    // fallback: رجع trending movies لو الدالة مش موجودة
     return () => tmdbFetch('/trending/all/day');
   }
 });
@@ -65,9 +55,13 @@ export function buildUniqueContent(movie) {
   const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
   const cast = movie.credits?.cast?.slice(0,3).map(c=>c.name).join(', ') || 'Top cast';
   const director = movie.credits?.crew?.find(c=>c.job==='Director')?.name || '';
-
   return {
-    longDesc: `${title} ${year ? `(${year})` : ''} is a ${movie.vote_count ? `highly rated ${rating}/10` : ''} title. ${movie.overview || ''} Starring ${cast}. ${director ? `Directed by ${director}.` : ''} Watch ${title} in HD on Zero TV with multiple servers and no ads on main server.`,
+    longDesc: `${title} ${year ? `(${year})` : ''} is a ${rating}/10 title. ${movie.overview || ''} Starring ${cast}. ${director ? `Directed by ${director}.` : ''} Watch ${title} in HD on Zero TV with multiple servers and no ads on main server.`,
     whyWatch: `Why watch ${title}? Rated ${rating}, with strong cast including ${cast}. ${movie.overview?.slice(0,150) || ''}`,
     faqs: [
-      { q: `Where to watch ${title}?`, a: `You can watch
+      { q: `Where to watch ${title}?`, a: `You can watch ${title} free on Zero TV in HD with 8 servers.` },
+      { q: `What is the rating of ${title}?`, a: `${title} has a rating of ${rating}/10 on TMDB with ${movie.vote_count || 0} votes.` },
+      { q: `Who stars in ${title}?`, a: `${cast} star in ${title}.` },
+    ]
+  };
+}
