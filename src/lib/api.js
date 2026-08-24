@@ -18,8 +18,8 @@ export const api = {
   topRatedTV: function() { return tmdbFetch("/tv/top_rated"); },
   airingTodayTV: function() { return tmdbFetch("/tv/airing_today"); },
   onTheAirTV: function() { return tmdbFetch("/tv/on_the_air"); },
-  animeTrending: function() { return tmdbFetch("/discover/tv?with_genres=16&with_original_language=ja&sort_by=popularity.desc"); },
-  trendingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&with_original_language=ja&sort_by=popularity.desc"); },
+  animeTrending: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
+  trendingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   popularAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   topRatedAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
   animeTopRated: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
@@ -35,11 +35,11 @@ export function buildUniqueContent(movie) {
   var rating = movie.vote_average ? movie.vote_average.toFixed(1) : "N/A";
   var cast = movie.credits && movie.credits.cast ? movie.credits.cast.slice(0, 3).map(function(c) { return c.name; }).join(", ") : "Top cast";
   return {
-    longDesc: title + " " + (year ? "(" + year + ")" : "") + " is a " + rating + "/10 title. " + (movie.overview || ""),
+    longDesc: title + " " + (year ? "(" + year + ")" : "") + " " + (movie.overview || ""),
     whyWatch: "Why watch " + title + "? Rated " + rating,
     faqs: [
       { q: "Where to watch " + title + "?", a: "On Zero TV" },
-      { q: "What is the rating?", a: rating + "/10" },
+      { q: "What is the rating?", a: rating },
       { q: "Who stars?", a: cast }
     ]
   };
