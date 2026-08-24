@@ -1,18 +1,15 @@
 name: IndexNow
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * *'  # مرة واحدة في اليوم الساعة 2
   workflow_dispatch:
-  push:
-    paths:
-      - 'public/sitemap.xml'
 
 jobs:
   indexnow:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Submit last 1 day only
+      - name: Submit latest URLs only (not all)
         uses: bojieyang/indexnow-action@v3
         with:
           sitemap-location: https://zero-tv.pages.dev/sitemap.xml
@@ -20,3 +17,5 @@ jobs:
           key-location: https://zero-tv.pages.dev/${{ secrets.INDEXNOW_KEY }}.txt
           since: 1
           since-unit: day
+          # ضيف دول عشان ميبعتش كله
+          endpoint: api.indexnow.org
