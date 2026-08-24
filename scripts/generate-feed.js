@@ -1,6 +1,7 @@
 import fs from 'fs';
 const SITE_URL = 'https://zero-tv.pages.dev';
 const TMDB_KEY = process.env.TMDB_KEY || 'af32459863d504e3a5d04f317e7f12e1';
+const TMDB_IMG = 'https://image.tmdb.org/t/p/w500';
 
 async function fetchTMDB(p){ 
   const u=`https://api.themoviedb.org/3${p}${p.includes('?')?'&':'?'}api_key=${TMDB_KEY}`; 
@@ -21,17 +22,22 @@ async function main(){
     const url = `${SITE_URL}/movie/${m.id}${slug?`-${slug}`:''}`;
     const pubDate = m.release_date ? new Date(m.release_date).toUTCString() : now;
     const overview = escapeXml(m.overview || `Watch ${m.title} on Zero TV`);
+    const poster = m.poster_path ? `${TMDB_IMG}${m.poster_path}` : '';
+    const imgTag = poster ? `<enclosure url="${poster}" type="image/jpeg" length="0" />
+    <media:content url="${poster}" medium="image" />
+    <media:thumbnail url="${poster}" />` : '';
     return `  <item>
     <title><![CDATA[${m.title}]]></title>
     <link>${url}</link>
     <guid isPermaLink="true">${url}</guid>
     <pubDate>${pubDate}</pubDate>
-    <description><![CDATA[${overview}]]></description>
+    <description><![CDATA[<img src="${poster}" /><br/>${m.overview || ''}]]></description>
+    ${imgTag}
   </item>`;
   }).join('\n');
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Zero TV</title>
   <link>${SITE_URL}</link>
@@ -44,10 +50,11 @@ ${items}
 </rss>`;
 
   fs.mkdirSync('dist',{recursive:true});
+  fs.mkdirSync('public',{recursive:true});
   fs.writeFileSync('dist/feed.xml', rss);
   fs.writeFileSync('dist/rss.xml', rss);
   fs.writeFileSync('public/feed.xml', rss);
   fs.writeFileSync('public/rss.xml', rss);
-  console.log(`✅ feed.xml generated with ${movies.length} movies - ${SITE_URL}`);
+  console.log(`✅ feed.xml with IMAGES generated - ${movies.length} movies`);
 }
 main();
