@@ -38,12 +38,19 @@ export const api = {
   topRatedTV: function() { return tmdbFetch("/tv/top_rated"); },
   airingTodayTV: function() { return tmdbFetch("/tv/airing_today"); },
   onTheAirTV: function() { return tmdbFetch("/tv/on_the_air"); },
+  // Anime aliases - all point to discover with genre 16
   animeTrending: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   trendingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   popularAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   animePopular: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
   topRatedAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
   animeTopRated: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
+  // These two were missing and broke Home page
+  animeAiring: function() { return tmdbFetch("/tv/on_the_air"); },
+  animeUpcoming: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01"); },
+  airingAnime: function() { return tmdbFetch("/tv/on_the_air"); },
+  upcomingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01"); },
+  // Details
   movieDetails: function(id) { return tmdbFetch("/movie/" + id + "?append_to_response=credits,videos,similar,images"); },
   tvDetails: function(id) { return tmdbFetch("/tv/" + id + "?append_to_response=credits,videos,similar,images"); },
   seasonDetails: function(tvId, seasonNumber) { return tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber); },
