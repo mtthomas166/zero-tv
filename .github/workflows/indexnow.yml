@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - 'public/sitemap.xml'
+
 jobs:
   indexnow:
     runs-on: ubuntu-latest
