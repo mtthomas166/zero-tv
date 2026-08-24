@@ -6,8 +6,14 @@ async function tmdbFetch(path) {
   const sep = path.includes("?") ? "&" : "?";
   const url = BASE + path + sep + "api_key=" + TMDB_KEY + "&language=en-US";
   const res = await fetch(url);
-  if (!res.ok) throw new Error("TMDB " + res.status);
+  if (!res.ok) throw new Error("TMDB " + res.status + " " + url);
   return res.json();
+}
+
+function withPage(path, page) {
+  const p = page || 1;
+  const sep = path.includes("?") ? "&" : "?";
+  return path + sep + "page=" + p;
 }
 
 export function posterUrl(path) {
@@ -28,34 +34,35 @@ export function formatRating(rating) {
 }
 
 export const api = {
-  trendingMovies: function() { return tmdbFetch("/trending/movie/day"); },
-  popularMovies: function() { return tmdbFetch("/movie/popular"); },
-  topRatedMovies: function() { return tmdbFetch("/movie/top_rated"); },
-  nowPlayingMovies: function() { return tmdbFetch("/movie/now_playing"); },
-  upcomingMovies: function() { return tmdbFetch("/movie/upcoming"); },
-  trendingTV: function() { return tmdbFetch("/trending/tv/day"); },
-  popularTV: function() { return tmdbFetch("/tv/popular"); },
-  topRatedTV: function() { return tmdbFetch("/tv/top_rated"); },
-  airingTodayTV: function() { return tmdbFetch("/tv/airing_today"); },
-  onTheAirTV: function() { return tmdbFetch("/tv/on_the_air"); },
-  // Anime aliases - all point to discover with genre 16
-  animeTrending: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
-  trendingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
-  popularAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
-  animePopular: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=popularity.desc"); },
-  topRatedAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
-  animeTopRated: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100"); },
-  // These two were missing and broke Home page
-  animeAiring: function() { return tmdbFetch("/tv/on_the_air"); },
-  animeUpcoming: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01"); },
-  airingAnime: function() { return tmdbFetch("/tv/on_the_air"); },
-  upcomingAnime: function() { return tmdbFetch("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01"); },
-  // Details
-  movieDetails: function(id) { return tmdbFetch("/movie/" + id + "?append_to_response=credits,videos,similar,images"); },
-  tvDetails: function(id) { return tmdbFetch("/tv/" + id + "?append_to_response=credits,videos,similar,images"); },
-  seasonDetails: function(tvId, seasonNumber) { return tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber); },
-  episodeDetails: function(tvId, seasonNumber, episodeNumber) { return tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber + "/episode/" + episodeNumber); },
-  searchMulti: function(q) { return tmdbFetch("/search/multi?query=" + encodeURIComponent(q)); }
+  trendingMovies: (page) => tmdbFetch(withPage("/trending/movie/day", page)),
+  popularMovies: (page) => tmdbFetch(withPage("/movie/popular", page)),
+  topRatedMovies: (page) => tmdbFetch(withPage("/movie/top_rated", page)),
+  nowPlayingMovies: (page) => tmdbFetch(withPage("/movie/now_playing", page)),
+  upcomingMovies: (page) => tmdbFetch(withPage("/movie/upcoming", page)),
+  
+  trendingTV: (page) => tmdbFetch(withPage("/trending/tv/day", page)),
+  popularTV: (page) => tmdbFetch(withPage("/tv/popular", page)),
+  topRatedTV: (page) => tmdbFetch(withPage("/tv/top_rated", page)),
+  airingTodayTV: (page) => tmdbFetch(withPage("/tv/airing_today", page)),
+  onTheAirTV: (page) => tmdbFetch(withPage("/tv/on_the_air", page)),
+
+  // Anime - all with genre 16
+  animeTrending: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=popularity.desc", page)),
+  trendingAnime: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=popularity.desc", page)),
+  popularAnime: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=popularity.desc", page)),
+  animePopular: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=popularity.desc", page)),
+  topRatedAnime: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100", page)),
+  animeTopRated: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=vote_average.desc&vote_count.gte=100", page)),
+  animeAiring: (page) => tmdbFetch(withPage("/tv/on_the_air", page)),
+  animeUpcoming: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01", page)),
+  airingAnime: (page) => tmdbFetch(withPage("/tv/on_the_air", page)),
+  upcomingAnime: (page) => tmdbFetch(withPage("/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.gte=2025-01-01", page)),
+
+  movieDetails: (id) => tmdbFetch("/movie/" + id + "?append_to_response=credits,videos,similar,images"),
+  tvDetails: (id) => tmdbFetch("/tv/" + id + "?append_to_response=credits,videos,similar,images"),
+  seasonDetails: (tvId, seasonNumber) => tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber),
+  episodeDetails: (tvId, seasonNumber, episodeNumber) => tmdbFetch("/tv/" + tvId + "/season/" + seasonNumber + "/episode/" + episodeNumber),
+  searchMulti: (q, page) => tmdbFetch(withPage("/search/multi?query=" + encodeURIComponent(q), page))
 };
 
 export default api;
