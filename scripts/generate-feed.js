@@ -21,7 +21,6 @@ async function main(){
   
   const items = [];
   
-  // 1. افلام - 10
   for(const m of (moviesData.results || []).slice(0,10)){
     items.push({
       title: m.title,
@@ -33,7 +32,6 @@ async function main(){
     });
   }
   
-  // 2. مسلسلات وانمي - كل واحد مع اخر حلقة نزلت
   for(const tv of (tvData.results || []).slice(0,6)){
     try{
       const details = await fetchTMDB(`/tv/${tv.id}`);
@@ -41,7 +39,6 @@ async function main(){
       const typeLabel = isAnime ? 'Anime' : 'TV Show';
       const slug = slugify(details.name || tv.name);
       
-      // اضافة المسلسل نفسه
       items.push({
         title: details.name || tv.name,
         url: `${SITE_URL}/${isAnime ? 'anime' : 'tv'}/${tv.id}-${slug}`,
@@ -51,7 +48,6 @@ async function main(){
         label: typeLabel
       });
       
-      // اضافة اخر حلقة نزلت منه
       const lastEp = details.last_episode_to_air;
       if(lastEp){
         const epSlug = slugify(lastEp.name || `episode-${lastEp.episode_number}`);
@@ -68,33 +64,35 @@ async function main(){
     }catch(e){}
   }
   
-  // ترتيب عشوائي واخد 20
   const finalItems = items.sort(()=>Math.random()-0.5).slice(0,20);
   const now = new Date().toUTCString();
   
   const xmlItems = finalItems.map(m => {
     const pubDate = m.date ? new Date(m.date).toUTCString() : now;
-    const imgTag = m.poster ? `<enclosure url="${m.poster}" type="image/jpeg" length="0" />
-    <media:content url="${m.poster}" medium="image" />
+    const safeOverview = escapeXml(m.overview || '');
+    // FIX: enclosure without length=0 and with proper escaping, Pinterest needs valid URL
+    const imgTag = m.poster ? `    <enclosure url="${m.poster}" type="image/jpeg" />
+    <media:content url="${m.poster}" medium="image" type="image/jpeg" />
     <media:thumbnail url="${m.poster}" />` : '';
     return `  <item>
     <title><![CDATA[${m.title} [${m.label}]]]></title>
     <link>${m.url}</link>
     <guid isPermaLink="true">${m.url}</guid>
     <pubDate>${pubDate}</pubDate>
-    <description><![CDATA[<img src="${m.poster}" /><br/>${escapeXml(m.overview || '')}]]></description>
-    ${imgTag}
+    <description><![CDATA[${safeOverview}]]></description>
+${imgTag}
   </item>`;
   }).join('\n');
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>Zero TV</title>
   <link>${SITE_URL}</link>
   <description>Zero TV - Latest Movies, TV Shows, Anime and Episodes</description>
   <lastBuildDate>${now}</lastBuildDate>
-  <language>ar</language>
+  <language>en</language>
+  <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
   <generator>Zero TV - Full Content Feed</generator>
 ${xmlItems}
 </channel>
@@ -102,11 +100,15 @@ ${xmlItems}
 
   fs.mkdirSync('dist',{recursive:true});
   fs.mkdirSync('public',{recursive:true});
-  fs.writeFileSync('dist/feed.xml', rss);
-  fs.writeFileSync('dist/rss.xml', rss);
-  fs.writeFileSync('public/feed.xml', rss);
-  fs.writeFileSync('public/rss.xml', rss);
-  console.log(`✅ FULL FEED - ${finalItems.length} items (Movies + TV + Anime + Episodes)`);
-  finalItems.forEach(i=>console.log(` - ${i.label}: ${i.title}`));
+  
+  // كل الاسماء اللي كنت بتستخدمها هتولد من نفس المحتوى عشان Pinterest و MastoFeed
+  const files = ['feed.xml', 'rss.xml', 'anime-feed.xml', 'tv-feed.xml', 'movies-feed.xml'];
+  for(const f of files){
+    fs.writeFileSync(`dist/${f}`, rss);
+    fs.writeFileSync(`public/${f}`, rss);
+  }
+  
+  console.log(`✅ FULL FEED - ${finalItems.length} items (Movies + TV + Anime + Episodes) with IMAGES`);
+  finalItems.forEach(i=>console.log(` - ${i.label}: ${i.title} | ${i.poster ? 'IMG OK' : 'NO IMG'}`));
 }
 main();
