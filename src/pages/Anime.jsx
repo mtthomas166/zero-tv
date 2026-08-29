@@ -58,7 +58,8 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         })
         const mapped = Array.from(uniqueMap.values()).slice(0, 70)
         setItems(mapped)
-        if (mapped.length < 70) setHasMore(false)
+        // FIX: Don't hide Load More even if less than 70
+        setHasMore(true)
 
         const savedScroll = sessionStorage.getItem(SCROLL_KEY)
         if (savedScroll) {
@@ -83,13 +84,12 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   }
 
   async function handleLoadMore() {
-    if (loadingMore ||!hasMore) return
+    if (loadingMore) return
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
       const responses = await Promise.all([nextPage, nextPage+1, nextPage+2, nextPage+3].map(p => cat.fetcher(p)))
       const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
-      if (allResults.length === 0) { setHasMore(false); return }
       const existingIds = new Set(items.map(i => i.id))
       const newUnique = []
       allResults.forEach(item => {
@@ -98,11 +98,12 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
           existingIds.add(item.id)
         }
       })
-      if (newUnique.length === 0) setHasMore(false)
-      else {
+      if (newUnique.length > 0) {
         setItems(prev => [...prev,...newUnique])
         setNextPage(prev => prev + PAGE_BATCH)
       }
+      // FIX: Keep Load More visible always
+      setHasMore(true)
     } catch (e) { console.error(e) }
     finally { setLoadingMore(false) }
   }
@@ -111,7 +112,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     <div style={{ paddingTop: '10px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ margin: '0 0 6px', fontSize: '28px', color: '#fff' }}>🍥 Anime</h1>
-        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles {hasMore? '+' : ''}</p>
+        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles +</p>
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
