@@ -21,7 +21,7 @@ function isAnimeItem(item){
   if(!item.poster_path) return false
   const title = (item.name || item.title || '').toLowerCase()
   if(title.includes('placeholder') || title.includes('random robotul')) return false
-  const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : (Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false)
+  const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : (Array.isArray(item.genres) ? item.genres.some(g => g.id === 16) : false)
   if(!hasAnimation) return false
   const isJP = item.origin_country?.includes('JP') || item.original_language === 'ja'
   if(!isJP) return false
@@ -57,7 +57,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         const savedNext = sessionStorage.getItem(NEXT_PAGE_KEY)
         if(savedItems && savedActive === active){
           const parsed = JSON.parse(savedItems)
-          if(Array.isArray(parsed) && parsed.length >= 20){
+          if(Array.isArray(parsed) && parsed.length > 0){
             setItems(parsed)
             setNextPage(savedNext ? parseInt(savedNext) : 5)
             setHasMore(true)
@@ -74,19 +74,18 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         const cat = categories.find(c => c.key === active) || categories[0]
         const uniqueMap = new Map()
         let page = 1
-        let emptyStreak = 0
-        while(uniqueMap.size < 70 && page < 100 && emptyStreak < 3){
+        let tries = 0
+        while(uniqueMap.size < 30 && page < 20 && tries < 5){
           const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
           const allResults = responses.flatMap(r => r.results || [])
-          if(allResults.length === 0){ emptyStreak++; page+=4; continue }
+          if(allResults.length === 0) break
           const filtered = allResults.filter(isAnimeItem)
           filtered.forEach(item => { if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true }) })
           page += 4
-          if(filtered.length === 0) emptyStreak++; else emptyStreak = 0
+          tries++
         }
-        setItems(Array.from(uniqueMap.values()).slice(0, 70))
+        setItems(Array.from(uniqueMap.values()))
         setNextPage(page)
-        setHasMore(page < 100)
       } catch (e) { console.error(e) } finally { setLoading(false) }
     }
     load()
@@ -120,31 +119,24 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
       const existingIds = new Set(items.map(i => i.id))
-      const newMap = new Map()
       let page = nextPage
-      let emptyStreak = 0
-      // WHY IT STOPS BEFORE: old code stopped after 30 pages. Now we go to 500 pages and never give up easily
-      while(newMap.size < 70 && page < 500 && emptyStreak < 5){
+      let found = []
+      let attempts = 0
+      // FAST MODE: fetch only 4 pages per click, try max 3 times if empty
+      while(found.length === 0 && attempts < 3 && page < 200){
         const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
         const allResults = responses.flatMap(r => r.results || [])
-        if(allResults.length === 0){
-          emptyStreak++
-          page += 4
-          continue
+        if(allResults.length === 0){ attempts++; page+=4; continue }
+        const filtered = allResults.filter(isAnimeItem).filter(it => !existingIds.has(it.id))
+        if(filtered.length > 0){
+          found = filtered.map(it => ({...it, type: 'tv', isAnime: true }))
+        } else {
+          attempts++
         }
-        const filtered = allResults.filter(isAnimeItem)
-        filtered.forEach(item => {
-          if (!existingIds.has(item.id) && !newMap.has(item.id)) {
-            newMap.set(item.id, {...item, type: 'tv', isAnime: true })
-          }
-        })
         page += 4
-        if(filtered.length === 0) emptyStreak++
-        else emptyStreak = 0
       }
-      const newItems = Array.from(newMap.values()).slice(0, 70)
-      if(newItems.length > 0){
-        const combined = [...items, ...newItems]
+      if(found.length > 0){
+        const combined = [...items, ...found]
         setItems(combined)
         try{
           sessionStorage.setItem(ITEMS_KEY, JSON.stringify(combined))
@@ -152,9 +144,9 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         }catch(e){}
         setHasMore(true)
       } else {
-        // No more filtered anime found after scanning 500 pages - truly finished
-        if(page >= 500) setHasMore(false)
-        else setHasMore(true)
+        // If truly no more, keep button but show message in console
+        console.log('No more Japanese anime found after page', page)
+        setHasMore(true) // Keep infinite, don't hide
       }
       setNextPage(page)
     } catch (e) { console.error(e) } finally { setLoadingMore(false) }
@@ -164,7 +156,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     <div style={{ paddingTop: '10px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ margin: '0 0 6px', fontSize: '28px', color: '#fff' }}>Anime</h1>
-        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles + {hasMore ? ' • infinite' : ' • end'}</p>
+        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles +</p>
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
@@ -181,9 +173,6 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
             {loadingMore? 'Loading...' : 'Load More +70'}
           </button>
         </div>
-      )}
-      {!loading && !hasMore && (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px', color: '#7d8894', fontSize: '13px' }}>No more anime found</div>
       )}
     </div>
   )
