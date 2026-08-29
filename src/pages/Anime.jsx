@@ -29,23 +29,16 @@ function isAnimeItem(item){
 }
 
 export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, initialCategory, onSelect }) {
-  const [active, setActive] = useState(() => {
-    return localStorage.getItem(STORAGE_KEY) || initialCategory || 'trending'
-  })
+  const [active, setActive] = useState(() => localStorage.getItem(STORAGE_KEY) || initialCategory || 'trending')
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
   const [nextPage, setNextPage] = useState(5)
+  const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    if (initialCategory) setActive(initialCategory)
-  }, [initialCategory])
+  useEffect(() => { if (initialCategory) setActive(initialCategory) }, [initialCategory])
+  useEffect(() => { localStorage.setItem(STORAGE_KEY, active) }, [active])
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, active)
-  }, [active])
-
-  // Save state to sessionStorage whenever items or nextPage change
   useEffect(() => {
     if(items.length > 0){
       try{
@@ -58,16 +51,16 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
 
   useEffect(() => {
     async function load() {
-      // Try to restore saved content first (when user clicks back)
       try{
         const savedActive = sessionStorage.getItem(ACTIVE_SAVED_KEY)
         const savedItems = sessionStorage.getItem(ITEMS_KEY)
         const savedNext = sessionStorage.getItem(NEXT_PAGE_KEY)
         if(savedItems && savedActive === active){
           const parsed = JSON.parse(savedItems)
-          if(Array.isArray(parsed) && parsed.length >= 70){
+          if(Array.isArray(parsed) && parsed.length >= 20){
             setItems(parsed)
             setNextPage(savedNext ? parseInt(savedNext) : 5)
+            setHasMore(true)
             setLoading(false)
             return
           }
@@ -75,51 +68,42 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       }catch(e){}
 
       setLoading(true)
+      setHasMore(true)
       setNextPage(5)
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
         const uniqueMap = new Map()
         let page = 1
-        while(uniqueMap.size < 70 && page < 40){
+        let emptyStreak = 0
+        while(uniqueMap.size < 70 && page < 100 && emptyStreak < 3){
           const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
           const allResults = responses.flatMap(r => r.results || [])
-          if(allResults.length === 0) break
+          if(allResults.length === 0){ emptyStreak++; page+=4; continue }
           const filtered = allResults.filter(isAnimeItem)
-          filtered.forEach(item => {
-            if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
-          })
+          filtered.forEach(item => { if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true }) })
           page += 4
+          if(filtered.length === 0) emptyStreak++; else emptyStreak = 0
         }
         setItems(Array.from(uniqueMap.values()).slice(0, 70))
         setNextPage(page)
-      } catch (e) {
-        console.error(e)
-      } finally {
-        setLoading(false)
-      }
+        setHasMore(page < 100)
+      } catch (e) { console.error(e) } finally { setLoading(false) }
     }
     load()
   }, [active])
 
-  // Restore scroll position
   useEffect(() => {
     if(!loading && items.length > 0){
       const saved = sessionStorage.getItem(SCROLL_KEY)
       if(saved){
         const pos = parseInt(saved, 10)
-        setTimeout(() => {
-          window.scrollTo({ top: pos, behavior: 'instant' })
-        }, 100)
-        setTimeout(() => {
-          window.scrollTo({ top: pos, behavior: 'instant' })
-          sessionStorage.removeItem(SCROLL_KEY)
-        }, 600)
+        setTimeout(() => window.scrollTo({ top: pos, behavior: 'instant' }), 100)
+        setTimeout(() => { window.scrollTo({ top: pos, behavior: 'instant' }); sessionStorage.removeItem(SCROLL_KEY) }, 600)
       }
     }
   }, [loading, items])
 
   const handleSelect = (item) => {
-    // Save everything before leaving page
     try{
       sessionStorage.setItem(ITEMS_KEY, JSON.stringify(items))
       sessionStorage.setItem(NEXT_PAGE_KEY, nextPage.toString())
@@ -138,12 +122,13 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       const existingIds = new Set(items.map(i => i.id))
       const newMap = new Map()
       let page = nextPage
-      let attempts = 0
-      while(newMap.size < 70 && page < 120 && attempts < 15){
+      let emptyStreak = 0
+      // WHY IT STOPS BEFORE: old code stopped after 30 pages. Now we go to 500 pages and never give up easily
+      while(newMap.size < 70 && page < 500 && emptyStreak < 5){
         const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
         const allResults = responses.flatMap(r => r.results || [])
         if(allResults.length === 0){
-          attempts++
+          emptyStreak++
           page += 4
           continue
         }
@@ -154,7 +139,8 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
           }
         })
         page += 4
-        if(filtered.length === 0) attempts++
+        if(filtered.length === 0) emptyStreak++
+        else emptyStreak = 0
       }
       const newItems = Array.from(newMap.values()).slice(0, 70)
       if(newItems.length > 0){
@@ -163,43 +149,41 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         try{
           sessionStorage.setItem(ITEMS_KEY, JSON.stringify(combined))
           sessionStorage.setItem(NEXT_PAGE_KEY, page.toString())
-          sessionStorage.setItem(ACTIVE_SAVED_KEY, active)
         }catch(e){}
+        setHasMore(true)
+      } else {
+        // No more filtered anime found after scanning 500 pages - truly finished
+        if(page >= 500) setHasMore(false)
+        else setHasMore(true)
       }
       setNextPage(page)
-    } catch (e) { 
-      console.error(e) 
-    } finally { 
-      setLoadingMore(false) 
-    }
+    } catch (e) { console.error(e) } finally { setLoadingMore(false) }
   }
 
   return (
     <div style={{ paddingTop: '10px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ margin: '0 0 6px', fontSize: '28px', color: '#fff' }}>Anime</h1>
-        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles +</p>
+        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles + {hasMore ? ' • infinite' : ' • end'}</p>
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
           <button key={cat.key} onClick={() => {
-            // Clear saved items when changing category
-            try{
-              sessionStorage.removeItem(ITEMS_KEY)
-              sessionStorage.removeItem(NEXT_PAGE_KEY)
-              sessionStorage.removeItem(SCROLL_KEY)
-            }catch(e){}
+            try{ sessionStorage.removeItem(ITEMS_KEY); sessionStorage.removeItem(NEXT_PAGE_KEY); sessionStorage.removeItem(SCROLL_KEY) }catch(e){}
             setActive(cat.key)
           }} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>{cat.label}</button>
         ))}
       </div>
       <MediaGrid items={items} type="anime" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
-      {!loading && (
+      {!loading && hasMore && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
           <button onClick={handleLoadMore} disabled={loadingMore} style={{ minHeight: '44px', padding: '0 28px', borderRadius: '10px', border: '1px solid rgba(255,255,255,.12)', background: loadingMore? 'rgba(255,255,255,.06)' : '#e50914', color: '#fff', fontWeight: 800, fontSize: '13px', cursor: loadingMore? 'not-allowed' : 'pointer' }}>
             {loadingMore? 'Loading...' : 'Load More +70'}
           </button>
         </div>
+      )}
+      {!loading && !hasMore && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px', color: '#7d8894', fontSize: '13px' }}>No more anime found</div>
       )}
     </div>
   )
