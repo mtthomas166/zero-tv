@@ -10,6 +10,7 @@ const categories = [
   { key: 'upcoming', label: '🚀 Upcoming', fetcher: (p) => api.animeUpcoming(p) },
 ]
 
+const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-anime-active'
 const SCROLL_KEY = 'zero-tv-scroll'
 
@@ -28,7 +29,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
-  const [nextPage, setNextPage] = useState(1)
+  const [nextPage, setNextPage] = useState(5)
   const [hasMore, setHasMore] = useState(true)
 
   useEffect(() => {
@@ -45,37 +46,35 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     async function load() {
       setLoading(true)
       setHasMore(true)
-      setNextPage(1)
+      setNextPage(5)
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
+        // نرجع زي الاول 4 صفحات بس بس مفلترة
+        const responses = await Promise.all([1,2,3,4].map(p => cat.fetcher(p)))
+        const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
         const uniqueMap = new Map()
-        let page = 1
-        let tries = 0
-        // لحد ما نجمع 70 انمي او نقلب 20 صفحة (80 محاولة)
-        while(uniqueMap.size < 70 && page <= 25 && tries < 8){
-          const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
-          const allResults = responses.flatMap(r => r.results || [])
-          const filtered = allResults.filter(isAnimeItem)
-          filtered.forEach(item => {
-            if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
-          })
-          const gotAny = allResults.length > 0
-          page += 4
-          tries++
-          if(!gotAny) break
+        allResults.forEach(item => {
+          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
+        })
+        const mapped = Array.from(uniqueMap.values())
+        // لو فلترنا وطلع اقل من 70 هنحاول نكمل بصفحات زيادة لحد 70
+        if(mapped.length < 20){
+          let page = 5
+          while(uniqueMap.size < 70 && page < 20){
+            try{
+              const moreRes = await Promise.all([page, page+1].map(p => cat.fetcher(p)))
+              const moreResults = moreRes.flatMap(r => r.results || []).filter(isAnimeItem)
+              if(moreResults.length === 0) break
+              moreResults.forEach(item => {
+                if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
+              })
+              page+=2
+            }catch{ break }
+          }
+          setNextPage(page)
         }
-        const mapped = Array.from(uniqueMap.values()).slice(0, 70)
-        setItems(mapped)
-        setNextPage(page)
-        setHasMore(uniqueMap.size >= 70 || page <= 25)
-
-        const savedScroll = sessionStorage.getItem(SCROLL_KEY)
-        if (savedScroll) {
-          setTimeout(() => {
-            window.scrollTo(0, parseInt(savedScroll))
-            sessionStorage.removeItem(SCROLL_KEY)
-          }, 150)
-        }
+        setItems(Array.from(uniqueMap.values()).slice(0, 70))
+        setHasMore(true) // زي الاول: المزيد بدون حدود
       } catch (e) {
         console.error(e)
       } finally {
@@ -92,34 +91,45 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   }
 
   async function handleLoadMore() {
-    if (loadingMore || !hasMore) return
+    if (loadingMore) return
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
-      const uniqueNew = new Map()
-      let page = nextPage
-      let tries = 0
+      const responses = await Promise.all([nextPage, nextPage+1, nextPage+2, nextPage+3].map(p => cat.fetcher(p)))
+      const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
       const existingIds = new Set(items.map(i => i.id))
-      while(uniqueNew.size < 70 && page <= 30 && tries < 6){
-        const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
-        const allResults = responses.flatMap(r => r.results || [])
-        const filtered = allResults.filter(isAnimeItem)
-        filtered.forEach(item => {
-          if (!existingIds.has(item.id) && !uniqueNew.has(item.id)) {
-            uniqueNew.set(item.id, {...item, type: 'tv', isAnime: true })
+      const newUnique = []
+      allResults.forEach(item => {
+        if (!existingIds.has(item.id)) {
+          newUnique.push({...item, type: 'tv', isAnime: true })
+          existingIds.add(item.id)
+        }
+      })
+      // لو بعد الفلترة طلع 0 نكمل صفحة كمان
+      if(newUnique.length === 0){
+        let page = nextPage + 4
+        for(let attempt=0; attempt<3; attempt++){
+          const moreRes = await Promise.all([page, page+1].map(p => cat.fetcher(p)))
+          const moreResults = moreRes.flatMap(r => r.results || []).filter(isAnimeItem)
+          const filteredNew = moreResults.filter(it => !existingIds.has(it.id))
+          if(filteredNew.length > 0){
+            newUnique.push(...filteredNew.map(it => ({...it, type: 'tv', isAnime: true })))
+            page+=2
+            break
           }
-        })
-        const gotAny = allResults.length > 0
-        page += 4
-        tries++
-        if(!gotAny) break
-      }
-      const newItems = Array.from(uniqueNew.values()).slice(0,70)
-      if (newItems.length === 0) setHasMore(false)
-      else {
-        setItems(prev => [...prev, ...newItems])
+          page+=2
+        }
         setNextPage(page)
-        setHasMore(page <= 30)
+      } else {
+        setNextPage(prev => prev + PAGE_BATCH)
+      }
+      
+      if(newUnique.length > 0){
+        setItems(prev => [...prev, ...newUnique])
+        setHasMore(true)
+      } else {
+        // حتى لو مفيش جديد نفضل سايبين الزرار زي زمان (بدون حدود)
+        setHasMore(true)
       }
     } catch (e) { console.error(e) }
     finally { setLoadingMore(false) }
@@ -129,7 +139,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     <div style={{ paddingTop: '10px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ margin: '0 0 6px', fontSize: '28px', color: '#fff' }}>🍥 Anime</h1>
-        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles {hasMore? '+' : ''}</p>
+        <p style={{ margin: 0, color: '#7d8894', fontSize: '13px' }}>{items.length} titles +</p>
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
@@ -137,7 +147,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
         ))}
       </div>
       <MediaGrid items={items} type="anime" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
-      {!loading && hasMore && (
+      {!loading && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
           <button onClick={handleLoadMore} disabled={loadingMore} style={{ minHeight: '44px', padding: '0 28px', borderRadius: '10px', border: '1px solid rgba(255,255,255,.12)', background: loadingMore? 'rgba(255,255,255,.06)' : '#e50914', color: '#fff', fontWeight: 800, fontSize: '13px', cursor: loadingMore? 'not-allowed' : 'pointer' }}>{loadingMore? 'Loading...' : 'Load More +70'}</button>
         </div>
