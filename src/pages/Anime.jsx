@@ -10,14 +10,21 @@ const categories = [
   { key: 'upcoming', label: 'Upcoming', fetcher: (p) => api.animeUpcoming(p) },
 ]
 
-const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-anime-active'
 const SCROLL_KEY = 'zero-tv-scroll-pos'
+const ITEMS_KEY = 'zero-tv-anime-items'
+const NEXT_PAGE_KEY = 'zero-tv-anime-nextPage'
+const ACTIVE_SAVED_KEY = 'zero-tv-anime-active-saved'
 
 function isAnimeItem(item){
   if(!item) return false
+  if(!item.poster_path) return false
+  const title = (item.name || item.title || '').toLowerCase()
+  if(title.includes('placeholder') || title.includes('random robotul')) return false
   const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : (Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false)
   if(!hasAnimation) return false
+  const isJP = item.origin_country?.includes('JP') || item.original_language === 'ja'
+  if(!isJP) return false
   return true
 }
 
@@ -38,24 +45,49 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     localStorage.setItem(STORAGE_KEY, active)
   }, [active])
 
-  // Load initial 70
+  // Save state to sessionStorage whenever items or nextPage change
+  useEffect(() => {
+    if(items.length > 0){
+      try{
+        sessionStorage.setItem(ITEMS_KEY, JSON.stringify(items))
+        sessionStorage.setItem(NEXT_PAGE_KEY, nextPage.toString())
+        sessionStorage.setItem(ACTIVE_SAVED_KEY, active)
+      }catch(e){}
+    }
+  }, [items, nextPage, active])
+
   useEffect(() => {
     async function load() {
+      // Try to restore saved content first (when user clicks back)
+      try{
+        const savedActive = sessionStorage.getItem(ACTIVE_SAVED_KEY)
+        const savedItems = sessionStorage.getItem(ITEMS_KEY)
+        const savedNext = sessionStorage.getItem(NEXT_PAGE_KEY)
+        if(savedItems && savedActive === active){
+          const parsed = JSON.parse(savedItems)
+          if(Array.isArray(parsed) && parsed.length >= 70){
+            setItems(parsed)
+            setNextPage(savedNext ? parseInt(savedNext) : 5)
+            setLoading(false)
+            return
+          }
+        }
+      }catch(e){}
+
       setLoading(true)
       setNextPage(5)
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
         const uniqueMap = new Map()
         let page = 1
-        // Keep fetching until we have 70 anime or we tried 30 pages
-        while(uniqueMap.size < 70 && page < 30){
+        while(uniqueMap.size < 70 && page < 40){
           const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
           const allResults = responses.flatMap(r => r.results || [])
+          if(allResults.length === 0) break
           const filtered = allResults.filter(isAnimeItem)
           filtered.forEach(item => {
             if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
           })
-          if(allResults.length === 0) break
           page += 4
         }
         setItems(Array.from(uniqueMap.values()).slice(0, 70))
@@ -69,29 +101,32 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     load()
   }, [active])
 
-  // Restore scroll position after items loaded - FIX for back button returning to same place
+  // Restore scroll position
   useEffect(() => {
     if(!loading && items.length > 0){
       const saved = sessionStorage.getItem(SCROLL_KEY)
       if(saved){
         const pos = parseInt(saved, 10)
-        // Wait for DOM to render then scroll
+        setTimeout(() => {
+          window.scrollTo({ top: pos, behavior: 'instant' })
+        }, 100)
         setTimeout(() => {
           window.scrollTo({ top: pos, behavior: 'instant' })
           sessionStorage.removeItem(SCROLL_KEY)
-        }, 100)
-        // Second attempt after images load
-        setTimeout(() => {
-          window.scrollTo({ top: pos, behavior: 'instant' })
-        }, 500)
+        }, 600)
       }
     }
   }, [loading, items])
 
   const handleSelect = (item) => {
-    // Save exact scroll position before navigating
-    sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString())
-    sessionStorage.setItem('zero-tv-last-path', window.location.pathname)
+    // Save everything before leaving page
+    try{
+      sessionStorage.setItem(ITEMS_KEY, JSON.stringify(items))
+      sessionStorage.setItem(NEXT_PAGE_KEY, nextPage.toString())
+      sessionStorage.setItem(ACTIVE_SAVED_KEY, active)
+      sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString())
+      sessionStorage.setItem('zero-tv-last-path', window.location.pathname)
+    }catch(e){}
     onSelect({...item, type: 'tv', isAnime: true })
   }
 
@@ -103,32 +138,33 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       const existingIds = new Set(items.map(i => i.id))
       const newMap = new Map()
       let page = nextPage
-      // Infinite: keep trying pages until we find 70 new anime
       let attempts = 0
-      while(newMap.size < 70 && page < 100 && attempts < 10){
+      while(newMap.size < 70 && page < 120 && attempts < 15){
         const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
         const allResults = responses.flatMap(r => r.results || [])
+        if(allResults.length === 0){
+          attempts++
+          page += 4
+          continue
+        }
         const filtered = allResults.filter(isAnimeItem)
         filtered.forEach(item => {
           if (!existingIds.has(item.id) && !newMap.has(item.id)) {
             newMap.set(item.id, {...item, type: 'tv', isAnime: true })
           }
         })
-        if(allResults.length === 0){
-          attempts++
-        } else {
-          page += 4
-        }
-        // If after filtering we got nothing, keep searching next pages (infinite behavior)
-        if(filtered.length === 0){
-          page += 4
-          attempts++
-          continue
-        }
+        page += 4
+        if(filtered.length === 0) attempts++
       }
       const newItems = Array.from(newMap.values()).slice(0, 70)
       if(newItems.length > 0){
-        setItems(prev => [...prev, ...newItems])
+        const combined = [...items, ...newItems]
+        setItems(combined)
+        try{
+          sessionStorage.setItem(ITEMS_KEY, JSON.stringify(combined))
+          sessionStorage.setItem(NEXT_PAGE_KEY, page.toString())
+          sessionStorage.setItem(ACTIVE_SAVED_KEY, active)
+        }catch(e){}
       }
       setNextPage(page)
     } catch (e) { 
@@ -146,7 +182,15 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       </div>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
         {categories.map(cat => (
-          <button key={cat.key} onClick={() => setActive(cat.key)} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>{cat.label}</button>
+          <button key={cat.key} onClick={() => {
+            // Clear saved items when changing category
+            try{
+              sessionStorage.removeItem(ITEMS_KEY)
+              sessionStorage.removeItem(NEXT_PAGE_KEY)
+              sessionStorage.removeItem(SCROLL_KEY)
+            }catch(e){}
+            setActive(cat.key)
+          }} style={{ padding: '8px 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.1)', background: active === cat.key? '#e50914' : 'rgba(255,255,255,.06)', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>{cat.label}</button>
         ))}
       </div>
       <MediaGrid items={items} type="anime" loading={loading} onSelect={handleSelect} onWatchlistChange={onWatchlistChange} isInWatchlist={isInWatchlist} />
