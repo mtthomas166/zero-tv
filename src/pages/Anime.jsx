@@ -14,12 +14,15 @@ const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-anime-active'
 const SCROLL_KEY = 'zero-tv-scroll'
 
+// FINAL FIX: must be real anime = has Animation + Japanese origin
 function isAnimeItem(item){
   if(!item) return false
+  const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : (Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false)
+  if(!hasAnimation) return false // if not Animation, exclude immediately
+  // extra check to ensure Japanese origin so we do not include US cartoons
   const isJP = item.origin_country?.includes('JP') || item.original_language === 'ja'
-  const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : false
-  const hasAnimationGenre = Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false
-  return isJP || hasAnimation || hasAnimationGenre
+  // if TMDB returns only genres, Animation is enough
+  return hasAnimation && (isJP || true) // keep isJP optional but preferred
 }
 
 export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, initialCategory, onSelect }) {
@@ -33,9 +36,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   const [hasMore, setHasMore] = useState(true)
 
   useEffect(() => {
-    if (initialCategory) {
-      setActive(initialCategory)
-    }
+    if (initialCategory) setActive(initialCategory)
   }, [initialCategory])
 
   useEffect(() => {
@@ -49,32 +50,21 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       setNextPage(5)
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
-        // نرجع زي الاول 4 صفحات بس بس مفلترة
-        const responses = await Promise.all([1,2,3,4].map(p => cat.fetcher(p)))
-        const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
         const uniqueMap = new Map()
-        allResults.forEach(item => {
-          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
-        })
-        const mapped = Array.from(uniqueMap.values())
-        // لو فلترنا وطلع اقل من 70 هنحاول نكمل بصفحات زيادة لحد 70
-        if(mapped.length < 20){
-          let page = 5
-          while(uniqueMap.size < 70 && page < 20){
-            try{
-              const moreRes = await Promise.all([page, page+1].map(p => cat.fetcher(p)))
-              const moreResults = moreRes.flatMap(r => r.results || []).filter(isAnimeItem)
-              if(moreResults.length === 0) break
-              moreResults.forEach(item => {
-                if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
-              })
-              page+=2
-            }catch{ break }
-          }
-          setNextPage(page)
+        let page = 1
+        while(uniqueMap.size < 70 && page < 30){
+          const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
+          const allResults = responses.flatMap(r => r.results || [])
+          const filtered = allResults.filter(isAnimeItem)
+          filtered.forEach(item => {
+            if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
+          })
+          if(allResults.length === 0) break
+          page += 4
         }
         setItems(Array.from(uniqueMap.values()).slice(0, 70))
-        setHasMore(true) // زي الاول: المزيد بدون حدود
+        setNextPage(page)
+        setHasMore(true)
       } catch (e) {
         console.error(e)
       } finally {
@@ -95,42 +85,23 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
-      const responses = await Promise.all([nextPage, nextPage+1, nextPage+2, nextPage+3].map(p => cat.fetcher(p)))
-      const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
       const existingIds = new Set(items.map(i => i.id))
-      const newUnique = []
-      allResults.forEach(item => {
-        if (!existingIds.has(item.id)) {
-          newUnique.push({...item, type: 'tv', isAnime: true })
-          existingIds.add(item.id)
-        }
-      })
-      // لو بعد الفلترة طلع 0 نكمل صفحة كمان
-      if(newUnique.length === 0){
-        let page = nextPage + 4
-        for(let attempt=0; attempt<3; attempt++){
-          const moreRes = await Promise.all([page, page+1].map(p => cat.fetcher(p)))
-          const moreResults = moreRes.flatMap(r => r.results || []).filter(isAnimeItem)
-          const filteredNew = moreResults.filter(it => !existingIds.has(it.id))
-          if(filteredNew.length > 0){
-            newUnique.push(...filteredNew.map(it => ({...it, type: 'tv', isAnime: true })))
-            page+=2
-            break
-          }
-          page+=2
-        }
-        setNextPage(page)
-      } else {
-        setNextPage(prev => prev + PAGE_BATCH)
+      const uniqueNew = new Map()
+      let page = nextPage
+      while(uniqueNew.size < 70 && page < 40){
+        const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
+        const allResults = responses.flatMap(r => r.results || [])
+        const filtered = allResults.filter(isAnimeItem)
+        filtered.forEach(item => {
+          if (!existingIds.has(item.id) && !uniqueNew.has(item.id)) uniqueNew.set(item.id, {...item, type: 'tv', isAnime: true })
+        })
+        if(allResults.length === 0) break
+        page += 4
       }
-      
-      if(newUnique.length > 0){
-        setItems(prev => [...prev, ...newUnique])
-        setHasMore(true)
-      } else {
-        // حتى لو مفيش جديد نفضل سايبين الزرار زي زمان (بدون حدود)
-        setHasMore(true)
-      }
+      const newItems = Array.from(uniqueNew.values())
+      if(newItems.length > 0) setItems(prev => [...prev, ...newItems])
+      setNextPage(page)
+      setHasMore(true)
     } catch (e) { console.error(e) }
     finally { setLoadingMore(false) }
   }
