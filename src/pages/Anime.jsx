@@ -14,6 +14,16 @@ const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-anime-active'
 const SCROLL_KEY = 'zero-tv-scroll'
 
+// FIX: فلتر انمي حقيقي - يمنع Reacher و Lioness يظهروا في صفحة الانمي
+function isAnimeItem(item){
+  if(!item) return false
+  const isJP = item.origin_country?.includes('JP') || item.original_language === 'ja'
+  const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : false
+  // في بعض الحالات الـ API بيرجع genres مش genre_ids
+  const hasAnimationGenre = Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false
+  return isJP || hasAnimation || hasAnimationGenre
+}
+
 export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, initialCategory, onSelect }) {
   const [active, setActive] = useState(() => {
     return localStorage.getItem(STORAGE_KEY) || initialCategory || 'trending'
@@ -42,7 +52,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
         const responses = await Promise.all([1,2,3,4].map(p => cat.fetcher(p)))
-        const allResults = responses.flatMap(r => r.results || [])
+        const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
         const uniqueMap = new Map()
         allResults.forEach(item => {
           if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
@@ -79,7 +89,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
       const responses = await Promise.all([nextPage, nextPage+1, nextPage+2, nextPage+3].map(p => cat.fetcher(p)))
-      const allResults = responses.flatMap(r => r.results || [])
+      const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
       if (allResults.length === 0) { setHasMore(false); return }
       const existingIds = new Set(items.map(i => i.id))
       const newUnique = []
