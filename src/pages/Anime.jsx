@@ -10,16 +10,13 @@ const categories = [
   { key: 'upcoming', label: '🚀 Upcoming', fetcher: (p) => api.animeUpcoming(p) },
 ]
 
-const PAGE_BATCH = 4
 const STORAGE_KEY = 'zero-tv-anime-active'
 const SCROLL_KEY = 'zero-tv-scroll'
 
-// FIX: فلتر انمي حقيقي - يمنع Reacher و Lioness يظهروا في صفحة الانمي
 function isAnimeItem(item){
   if(!item) return false
   const isJP = item.origin_country?.includes('JP') || item.original_language === 'ja'
   const hasAnimation = Array.isArray(item.genre_ids) ? item.genre_ids.includes(16) : false
-  // في بعض الحالات الـ API بيرجع genres مش genre_ids
   const hasAnimationGenre = Array.isArray(item.genres) ? item.genres.some(g => g.id === 16 || g.name === 'Animation') : false
   return isJP || hasAnimation || hasAnimationGenre
 }
@@ -31,7 +28,7 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
-  const [nextPage, setNextPage] = useState(5)
+  const [nextPage, setNextPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
 
   useEffect(() => {
@@ -48,18 +45,29 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
     async function load() {
       setLoading(true)
       setHasMore(true)
-      setNextPage(5)
+      setNextPage(1)
       try {
         const cat = categories.find(c => c.key === active) || categories[0]
-        const responses = await Promise.all([1,2,3,4].map(p => cat.fetcher(p)))
-        const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
         const uniqueMap = new Map()
-        allResults.forEach(item => {
-          if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
-        })
+        let page = 1
+        let tries = 0
+        // لحد ما نجمع 70 انمي او نقلب 20 صفحة (80 محاولة)
+        while(uniqueMap.size < 70 && page <= 25 && tries < 8){
+          const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
+          const allResults = responses.flatMap(r => r.results || [])
+          const filtered = allResults.filter(isAnimeItem)
+          filtered.forEach(item => {
+            if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, {...item, type: 'tv', isAnime: true })
+          })
+          const gotAny = allResults.length > 0
+          page += 4
+          tries++
+          if(!gotAny) break
+        }
         const mapped = Array.from(uniqueMap.values()).slice(0, 70)
         setItems(mapped)
-        if (mapped.length < 70) setHasMore(false)
+        setNextPage(page)
+        setHasMore(uniqueMap.size >= 70 || page <= 25)
 
         const savedScroll = sessionStorage.getItem(SCROLL_KEY)
         if (savedScroll) {
@@ -84,25 +92,34 @@ export default function Anime({ watchlist, onWatchlistChange, isInWatchlist, ini
   }
 
   async function handleLoadMore() {
-    if (loadingMore ||!hasMore) return
+    if (loadingMore || !hasMore) return
     setLoadingMore(true)
     try {
       const cat = categories.find(c => c.key === active) || categories[0]
-      const responses = await Promise.all([nextPage, nextPage+1, nextPage+2, nextPage+3].map(p => cat.fetcher(p)))
-      const allResults = responses.flatMap(r => r.results || []).filter(isAnimeItem)
-      if (allResults.length === 0) { setHasMore(false); return }
+      const uniqueNew = new Map()
+      let page = nextPage
+      let tries = 0
       const existingIds = new Set(items.map(i => i.id))
-      const newUnique = []
-      allResults.forEach(item => {
-        if (!existingIds.has(item.id)) {
-          newUnique.push({...item, type: 'tv', isAnime: true })
-          existingIds.add(item.id)
-        }
-      })
-      if (newUnique.length === 0) setHasMore(false)
+      while(uniqueNew.size < 70 && page <= 30 && tries < 6){
+        const responses = await Promise.all([page, page+1, page+2, page+3].map(p => cat.fetcher(p)))
+        const allResults = responses.flatMap(r => r.results || [])
+        const filtered = allResults.filter(isAnimeItem)
+        filtered.forEach(item => {
+          if (!existingIds.has(item.id) && !uniqueNew.has(item.id)) {
+            uniqueNew.set(item.id, {...item, type: 'tv', isAnime: true })
+          }
+        })
+        const gotAny = allResults.length > 0
+        page += 4
+        tries++
+        if(!gotAny) break
+      }
+      const newItems = Array.from(uniqueNew.values()).slice(0,70)
+      if (newItems.length === 0) setHasMore(false)
       else {
-        setItems(prev => [...prev,...newUnique])
-        setNextPage(prev => prev + PAGE_BATCH)
+        setItems(prev => [...prev, ...newItems])
+        setNextPage(page)
+        setHasMore(page <= 30)
       }
     } catch (e) { console.error(e) }
     finally { setLoadingMore(false) }
